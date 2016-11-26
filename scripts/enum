@@ -1,0 +1,150 @@
+ScratchpadEnums['bde.Schedules'] = [ "_15_MINUTES_", "_30_MINUTES_", "_1_HOUR_", "_2_HOURS_", "_4_HOURS_", "_8_HOURS_", "_12_HOURS_", "_72_HOURS_", "_1_DAY_", "_2_DAYS_", "_1_WEEK_", "_14_DAYS_", "_15_DAYS_", "_30_DAYS_", "_NEVER_" ];
+ScratchpadEnums['bde.FeedProcessingStatuses'] = [ "_SUBMITTED_", "_IN_PROGRESS_", "_CANCELLED_", "_DONE_" ];
+ScratchpadEnums['bde.ReportProcessingStatuses'] = [ "_SUBMITTED_", "_IN_PROGRESS_", "_CANCELLED_", "_DONE_", "_DONE_NO_DATA_" ];
+ScratchpadEnums['bde.Boolean'] = [ "true", "false" ];
+
+ScratchpadEnums['fba.ResponseGroups'] = [ "Basic", "Detailed" ];
+ScratchpadEnums['fba.ShippingSpeedCategory'] = [ "Standard", "Expedited", "Priority" ];
+ScratchFBAOutboundParameters = {};
+
+ScratchpadEnums['fba.FulfillmentPolicy'] = [ "FillOrKill", "FillAll", "FillAllAvailable" ];
+ScratchpadEnums['fba.PageType'] = ["PackageLabel_Letter_2", "PackageLabel_Letter_4", "PackageLabel_Letter_6", "PackageLabel_A4_4", "PackageLabel_Plain_Paper"];
+ScratchpadEnums['fba.ShipmentType'] = ["SP", "LTL", "TL"];
+ScratchpadEnums['fba.UnitOfMeasure'] = ["inches", "centimeters"];
+ScratchpadEnums['fba.UnitOfWeight'] = ["pounds", "kilograms"];
+ScratchpadEnums['fba.SellerFreightClass'] = ['50', '55', '60', '65', '70', '77.5', '85', '92.5', '100', '110', '125', '150', '175', '200', '250', '300', '400', '500'];
+ScratchpadEnums['fba.CurrencyCode'] = ['USD', 'GBP'];
+ScratchpadEnums['fba.CarrierName'] = ['UNITED_PARCEL_SERVICE_INC', 'DHL_STANDARD'];
+
+ScratchPadFulfillmentByAmazonParameters = {};
+	ScratchPadFulfillmentByAmazonParameters.PartneredSmallParcelDataCarrierName =
+	   { Name: "TransportDetails.PartneredSmallParcelData.CarrierName", Required: false, Type: "fba.CarrierName"};
+
+ScratchpadEnums['orders.FulfillmentChannels'] = [ "AFN", "MFN" ];
+//China has specific order status InvoiceUnconfirmed
+ScratchpadEnums['orders.OrderStatuses'] = [ "Pending", "Unshipped", "PartiallyShipped", "Shipped", "Canceled", "Unfulfillable", "PendingAvailability" ];
+ScratchpadEnums['orders.PaymentMethods'] = [ "COD", "CVS", "Other" ];
+
+//Section for Sellers API.
+
+ScratchpadEnums['recommendations.Categories'] = [ "Inventory", "Selection", "Pricing", "Fulfillment", "ListingQuality", "GlobalSelling", "Advertising" ];
+
+// Begin Subscriptions API Section
+
+ScratchpadEnums['subscriptions.DeliveryChannels'] = [ "SQS" ];
+
+ScratchpadEnums['subscriptions.NotificationTypes'] = ["AnyOfferChanged", "FulfillmentOrderStatus", "FeePromotion"];
+
+ScratchpadEnums['subscriptions.DestinationKeys'] = ['sqsQueueUrl'];
+
+ScratchpadParameters = {};
+
+ScratchpadParameters.MarketplaceId = { Name: 'MarketplaceId', Required: true};
+
+ScratchpadParameters.Destination = {
+    Name: 'Destination', Type: 'Complex', Required: true,
+    Parameters: [
+        { Name: 'Destination.DeliveryChannel', Type: 'subscriptions.DeliveryChannels', Required: true  },
+        { Name: 'Destination.AttributeList', Type: 'Complex', Required: true, List: true,
+            Parameters: [
+                { Name: 'Destination.AttributeList.member.-.Key', Required: true, Type:'subscriptions.DestinationKeys' },
+                { Name: 'Destination.AttributeList.member.-.Value', Required: true}
+            ]
+        }
+    ]
+};
+
+ScratchpadParameters.NotificationType = {
+    Name: 'NotificationType', Required: true, Type: 'subscriptions.NotificationTypes'
+};
+
+ScratchpadParameters.IsEnabled = {
+    Name: 'IsEnabled', Required: true, Type: 'bde.Boolean'
+};
+
+ScratchpadParameters.Subscription = {
+    Name: 'Subscription', Required: true, Type: 'Complex',
+    Parameters: [
+        { Name: 'Subscription.NotificationType', Required: true, Type: 'subscriptions.NotificationTypes' },
+        { Name: 'Subscription.Destination', Type: 'Complex', Required: true,
+            Parameters: [
+                { Name: 'Subscription.Destination.DeliveryChannel',
+                    Type: 'subscriptions.DeliveryChannels', Required: true  },
+                { Name: 'Subscription.Destination.AttributeList', Type: 'Complex', Required: true, List: true,
+                    Parameters: [
+                        { Name: 'Subscription.Destination.AttributeList.member.-.Key',
+                            Required: true, Type:'subscriptions.DestinationKeys' },
+                        { Name: 'Subscription.Destination.AttributeList.member.-.Value', Required: true}
+                    ]
+                }
+            ]
+        },
+        { Name: 'Subscription.IsEnabled', Required: true, Type: 'bde.Boolean'}
+    ]
+};
+
+// End Subscriptions API Section
+
+ShipmentRequestDetails = {
+    Name: 'ShipmentRequestDetails', Type: 'Complex', Required: true,
+    Parameters: [
+        { Name: 'ShipmentRequestDetails.AmazonOrderId', Required: true},
+        { Name: 'ShipmentRequestDetails.SellerOrderId',
+        { Name: 'ShipmentRequestDetails.MustArriveByDate', Required: true, Type: 'Timestamp'},
+        { Name: 'ShipmentRequestDetails.ShipDate', Type: 'Timestamp'},
+        { Name: 'ShipmentRequestDetails.PackageDimensions', Required: true, Type: 'Complex',
+            Parameters: [
+                { Name: 'ShipmentRequestDetails.PackageDimensions.Length',
+                { Name: 'ShipmentRequestDetails.PackageDimensions.Width',
+                { Name: 'ShipmentRequestDetails.PackageDimensions.Height',
+                { Name: 'ShipmentRequestDetails.PackageDimensions.Unit',
+                { Name: 'ShipmentRequestDetails.PackageDimensions.PredefinedPackageDimensions', }
+            ]
+        },
+        { Name: 'ShipmentRequestDetails.Weight', Required: true, Type: 'Complex',
+            Parameters: [
+                { Name: 'ShipmentRequestDetails.Weight.Value', Required: true},
+                { Name: 'ShipmentRequestDetails.Weight.Unit', Required: true}
+            ]
+        },
+        { Name: 'ShipmentRequestDetails.ShipFromAddress', Required: true, Type: 'Complex',
+            Parameters: [
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.Name', Required: true},
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.AddressLine1', Required: true},
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.AddressLine2',
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.AddressLine3',
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.DistrictOrCounty',
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.City', Required: true},
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.StateOrProvinceCode',
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.PostalCode', Required: true},
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.CountryCode', Required: true},
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.Email',
+                { Name: 'ShipmentRequestDetails.ShipFromAddress.Phone', }
+            ]
+        },
+        { Name: 'ShipmentRequestDetails.Insurance', Type: 'Complex',
+            Parameters: [
+                { Name: 'ShipmentRequestDetails.Insurance.CurrencyCode',
+                { Name: 'ShipmentRequestDetails.Insurance.Amount', }
+            ]
+        },
+        { Name: 'ShipmentRequestDetails.ShippingServiceOptions', Type: 'Complex',
+            Parameters: [
+                { Name: 'ShipmentRequestDetails.ShippingServiceOptions.DeliveryExperience',
+                { Name: 'ShipmentRequestDetails.ShippingServiceOptions.CarrierWillPickUp',
+                { Name: 'ShipmentRequestDetails.ShippingServiceOptions.DeclaredValue', Type: 'Complex',
+                    Parameters: [
+                        { Name: 'ShipmentRequestDetails.ShippingServiceOptions.DeclaredValue.CurrencyCode',
+                        { Name: 'ShipmentRequestDetails.ShippingServiceOptions.DeclaredValue.Amount', }
+                    ]
+                }
+            ]
+        },
+        { Name: 'ShipmentRequestDetails.ItemList.Item', Required: true, Type: 'Complex',
+            Parameters: [
+                { Name: 'ShipmentRequestDetails.ItemList.Item.-.OrderItemId', Required: true, List: true },
+                { Name: 'ShipmentRequestDetails.ItemList.Item.-.Quantity', Required: true, List: true }
+            ]
+        }
+    ]
+}

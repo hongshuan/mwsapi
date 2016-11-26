@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+- FileLogger
+- DbLoger
+#-----------------------------------------------------------
+$amazon = new Client($config);
+
+$productApi = $amazon->productApi();
+$productApi->set('ItemCondition', 'New');
+// $productApi->setItemCondition('New');
+$productApi->set('SellerSKU', $skus);
+$response = $productApi->getLowestOfferListingsForSKU();
+#-----------------------------------------------------------
+$productApi->reset();   // for another call
+#-----------------------------------------------------------
+gen.php
+- genHelpers();
+#-----------------------------------------------------------
