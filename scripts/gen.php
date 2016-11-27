@@ -1,6 +1,7 @@
 <?php
 
 const EOL = "\n";
+const DEBUG = true;
 
 $json = json_decode(file_get_contents(__DIR__ . '/mws-api.json'));
 
@@ -234,7 +235,9 @@ function genConstruct()
 
 function genClass($className, $val)
 {
-#   ob_start();
+    if (!DEBUG) {
+        ob_start();
+    }
 
     codeln('<?php');
     codeln('');
@@ -289,11 +292,14 @@ function endClass($className)
 {
     codeln('}');
     codeln('');
-#   $code = ob_get_contents();
-#   ob_end_clean();
 
-#   file_put_contents("$className.php", "$code");
-#   file_put_contents("$className.php", "<?php\n\nnamespace Amazon\\Mws;\n\n$code");
+    if (!DEBUG) {
+        $code = ob_get_contents();
+        ob_end_clean();
+
+        file_put_contents("$className.php", "$code");
+        file_put_contents("$className.php", "<?php\n\nnamespace Amazon\\Mws;\n\n$code");
+    }
 }
 
 function codeln($code)
