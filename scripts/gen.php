@@ -214,13 +214,13 @@ function genInvoke()
 {
     echo "\tprotected function invoke()\n";
     echo "\t{\n";
-    echo "\t\t", "\$url = self::PATH;\n";
+    echo "\t\t", "\$path = self::PATH;\n";
     echo "\n";
 
     echo "\t\t", "\$this->params['Version'] = self::VERSION;\n";
     echo "\n";
 
-    echo "\t\t", "\$response = \$this->client->httpGet(\$url, \$this->params);\n";
+    echo "\t\t", "\$response = \$this->client->httpGet(\$path, \$this->params);\n";
     echo "\n";
     echo "\t\t", "// TODO: parse response\n";
     echo "\t\t", "return \$response;\n";
