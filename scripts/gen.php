@@ -245,10 +245,46 @@ function genClass($className, $val)
     echo "\n";
     echo "namespace Amazon\\Mws;\n";
     echo "\n";
-    echo "class $className extends MwsApi\n{\n";
+   #echo "class $className extends MwsApi\n{\n";
+    echo "class $className\n{\n";
     echo "\tconst NAME = '", $val->Name, "';\n";
     echo "\tconst VERSION = '", $val->Version, "';\n";
     echo "\tconst PATH = '/", $val->Name, "/", $val->Version, "';\n";
+    echo "\n";
+
+    echo "\tprotected \$client;\n";
+    echo "\tprotected \$params = [];\n";
+    echo "\n";
+
+    echo "\tpublic function __construct(\$client)\n";
+    echo "\t{\n";
+    echo "\t\t\$this->client = \$client;\n";
+    echo "\t}\n";
+    echo "\n";
+
+    echo "\tpublic function set(\$name, \$value)\n";
+    echo "\t{\n";
+    echo "\t\tif (is_array(\$value)) {\n";
+    echo "\t\t\t\$N = 1;\n";
+    echo "\t\t\tforeach (\$value as \$val) {\n";
+    echo "\t\t\t\t\$this->params[\"\$name.\$N\"] = \$val;\n";
+    echo "\t\t\t\t\$N++;\n";
+    echo "\t\t\t}\n";
+    echo "\t\t} else {\n";
+    echo "\t\t\t\$this->params[\$name] = \$value;\n";
+    echo "\t\t}\n";
+    echo "\t\treturn \$this;\n";
+    echo "\t}\n";
+    echo "\n";
+
+    echo "\tpublic function __set(\$name, \$value)\n";
+    echo "\t{\n";
+    echo "\t\tif (substr(\$name, 0, 3) == 'set') {\n";
+    echo "\t\t\t\$name = substr(\$name, 3);\n";
+    echo "\t\t\t\$this->params[\$name] = \$value;\n";
+    echo "\t\t}\n";
+    echo "\t\treturn \$this;\n";
+    echo "\t}\n";
     echo "\n";
 }
 
@@ -260,4 +296,10 @@ function endClass($className)
 
 #   file_put_contents("$className.php", "$code");
 #   file_put_contents("$className.php", "<?php\n\nnamespace Amazon\\Mws;\n\n$code");
+}
+
+function codeln($code, $indent)
+{
+    echo str_repeat(' ', $indent*4);
+    echo $code, EOL;
 }
