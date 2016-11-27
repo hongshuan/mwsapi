@@ -19,7 +19,7 @@ foreach($json as $key => $val) {
         genInvoke();
         endClass('Feeds');
     }
-//*
+
     if ($key == 'Finances') {
         genClass('Finances', $val);
         genConstruct();
@@ -183,114 +183,111 @@ foreach($json as $key => $val) {
         genInvoke();
         endClass('Subscriptions');
     }
-//*/
-    //echo EOL;
 }
 
 function genMethod($name, $calls)
 {
-    echo "\tpublic function ", lcfirst($name), "()\n";
-    echo "\t{\n";
+    codeln('public function '. lcfirst($name). '()');
+    codeln('{');
     foreach ($calls->Parameters as $param) {
-        echo "\t\t// \$params['", $param->Name, "'] = ";
+        $str = "// \$params['". $param->Name. "'] = ";
         if (isset($param->Required) && $param->Required) {
-            echo "(Required) ";
+            $str .= "(Required) ";
         }
         if (isset($param->List) && $param->List) {
-            echo " (List) ";
+            $str .= " (List) ";
         }
         if (isset($param->Type)) {
-            echo "(Type: ", $param->Type, ")";
+            $str .= "(Type: ". $param->Type. ")";
         }
-        echo "\n";
+        codeln($str);
     }
-    echo "\n";
-    echo "\t\t", "\$this->params['Action'] = '", $name, "';\n\n";
-    echo "\t\t", "return \$this->invoke();\n";
-    echo "\t}\n\n"; 
+    codeln('');
+    codeln("\$this->params['Action'] = '". $name. "';");
+    codeln('return $this->invoke();');
+    codeln("}");
+    codeln("");
 }
 
 function genInvoke()
 {
-    echo "\tprotected function invoke()\n";
-    echo "\t{\n";
-    echo "\t\t", "\$path = self::PATH;\n";
-    echo "\n";
-
-    echo "\t\t", "\$this->params['Version'] = self::VERSION;\n";
-    echo "\n";
-
-    echo "\t\t", "\$response = \$this->client->httpGet(\$path, \$this->params);\n";
-    echo "\n";
-    echo "\t\t", "// TODO: parse response\n";
-    echo "\t\t", "return \$response;\n";
-    echo "\t}\n";
-    echo "\n";
+    codeln('protected function invoke()');
+    codeln('{');
+    codeln(    '$path = self::PATH;'); codeln('');
+    codeln(    '$this->params[\'Version\'] = self::VERSION;'); codeln('');
+    codeln(    '$response = $this->client->httpGet($path, $this->params);'); codeln('');
+    codeln(    '// TODO: parse response');
+    codeln(    'return $response;');
+    codeln('}'); codeln('');
 }
 
 function genConstruct()
 {
-   #echo "\tpublic function __construct(\$client)\n";
-   #echo "\t{\n";
-   #echo "\t\t", "\$this->params['Version'] = ", "self::VERSION;\n";
-  ##echo "\t\t", "\$this->params['Path'] = ", "self::PATH;\n\n";
-   #echo "\t\t", "parent::__construct(\$client);\n";
-   #echo "\t}\n\n";
+   #codeln('public function __construct($client)';
+   #codeln('{';
+   #codeln('$this->params[\'Version\'] = self::VERSION;';
+  ##codeln('$this->params[\'Path\'] = self::PATH;';
+   #codeln('parent::__construct($client);';
+   #codeln('}');
 }
 
 function genClass($className, $val)
 {
 #   ob_start();
-    echo "<?php\n";
-    echo "\n";
-    echo "namespace Amazon\\Mws;\n";
-    echo "\n";
-   #echo "class $className extends MwsApi\n{\n";
-    echo "class $className\n{\n";
-    echo "\tconst NAME = '", $val->Name, "';\n";
-    echo "\tconst VERSION = '", $val->Version, "';\n";
-    echo "\tconst PATH = '/", $val->Name, "/", $val->Version, "';\n";
-    echo "\n";
 
-    echo "\tprotected \$client;\n";
-    echo "\tprotected \$params = [];\n";
-    echo "\n";
+    codeln('<?php');
+    codeln('');
+    codeln('namespace Amazon\\Mws;');
+    codeln('');
+    codeln("class $className extends MwsApi");
+    codeln('{');
+    codeln(    "const NAME = '". $val->Name. "';");
+    codeln(    "const VERSION = '". $val->Version. "';");
+    codeln(    "const PATH = '/". $val->Name. "/". $val->Version. "';"); codeln('');
+/*
+    codeln(    'protected $client;');
+    codeln(    'protected $params = [];'); codeln('');
 
-    echo "\tpublic function __construct(\$client)\n";
-    echo "\t{\n";
-    echo "\t\t\$this->client = \$client;\n";
-    echo "\t}\n";
-    echo "\n";
+    codeln(    'public function __construct($client)');
+    codeln(    '{');
+    codeln(        '$this->client = $client;');
+    codeln(    '}'); codeln('');
 
-    echo "\tpublic function set(\$name, \$value)\n";
-    echo "\t{\n";
-    echo "\t\tif (is_array(\$value)) {\n";
-    echo "\t\t\t\$N = 1;\n";
-    echo "\t\t\tforeach (\$value as \$val) {\n";
-    echo "\t\t\t\t\$this->params[\"\$name.\$N\"] = \$val;\n";
-    echo "\t\t\t\t\$N++;\n";
-    echo "\t\t\t}\n";
-    echo "\t\t} else {\n";
-    echo "\t\t\t\$this->params[\$name] = \$value;\n";
-    echo "\t\t}\n";
-    echo "\t\treturn \$this;\n";
-    echo "\t}\n";
-    echo "\n";
+    codeln(    'public function set($name, $value)');
+    codeln(    '{');
+    codeln(        'if (is_array($value)) {');
+    codeln(            '$N = 1;');
+    codeln(            'foreach ($value as $val) {');
+    codeln(                '$this->params["$name.$N"] = $val;');
+    codeln(                '$N++;');
+    codeln(            '}');
+    codeln(        '}');
+    codeln(        'else {');
+    codeln(            '$this->params[$name] = $value;');
+    codeln(        '}');
+    codeln(        'return $this;');
+    codeln(    '}'); codeln('');
 
-    echo "\tpublic function __set(\$name, \$value)\n";
-    echo "\t{\n";
-    echo "\t\tif (substr(\$name, 0, 3) == 'set') {\n";
-    echo "\t\t\t\$name = substr(\$name, 3);\n";
-    echo "\t\t\t\$this->params[\$name] = \$value;\n";
-    echo "\t\t}\n";
-    echo "\t\treturn \$this;\n";
-    echo "\t}\n";
-    echo "\n";
+    codeln(    'public function __set(\$name, \$value)');
+    codeln(    '{');
+    codeln(        'if (substr($name, 0, 3) == \'set\') {');
+    codeln(            '$name = substr($name, 3);');
+    codeln(            '$this->params[$name] = $value;');
+    codeln(        '}');
+    codeln(        'return $this;');
+    codeln(    '}'); codeln('');
+
+    codeln(    'public function reset()');
+    codeln(    '{');
+    codeln(        '$this->params = [];');
+    codeln(    '}'); codeln('');
+*/
 }
 
 function endClass($className)
 {
-    echo "}\n\n";
+    codeln('}');
+    codeln('');
 #   $code = ob_get_contents();
 #   ob_end_clean();
 
@@ -298,8 +295,18 @@ function endClass($className)
 #   file_put_contents("$className.php", "<?php\n\nnamespace Amazon\\Mws;\n\n$code");
 }
 
-function codeln($code, $indent)
+function codeln($code)
 {
+    static $indent = 0;
+
+    if (substr($code, -1) == '}') {
+        $indent = max($indent-1, 0);
+    }
+
     echo str_repeat(' ', $indent*4);
-    echo $code, EOL;
+    echo trim($code), EOL;
+
+    if (substr($code, -1) == '{') {
+        $indent++;
+    }
 }

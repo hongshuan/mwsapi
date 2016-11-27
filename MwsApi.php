@@ -4,6 +4,7 @@ class MwsApi
 {
     protected $client;
     protected $params = [];
+    protected $results = []; // for NextToken ??
 
     public function __construct($client)
     {
@@ -35,5 +36,11 @@ class MwsApi
             $this->params[$name] = $value;
         }
         return $this;
+    }
+
+    public function reset()
+    {
+        $this->params = [];
+        $this->results = [];
     }
 }
