@@ -2,7 +2,7 @@
 
 const EOL = "\n";
 
-$json = json_decode(file_get_contents('mws-api.json'));
+$json = json_decode(file_get_contents(__DIR__ . '/mws-api.json'));
 
 foreach($json as $key => $val) {
 #   echo $key, ' ';
@@ -216,6 +216,7 @@ function genInvoke()
     codeln(    '$path = self::PATH;'); codeln('');
     codeln(    '$this->params[\'Version\'] = self::VERSION;'); codeln('');
     codeln(    '$response = $this->client->httpGet($path, $this->params);'); codeln('');
+    codeln(    '$this->params = []; // reset for next api call'); codeln('');
     codeln(    '// TODO: parse response');
     codeln(    'return $response;');
     codeln('}'); codeln('');
