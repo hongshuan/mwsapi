@@ -5,7 +5,7 @@ namespace Amazon\Mws;
 class Client
 {
     protected $config;
-    protected $logger;
+#   protected $logger;
     protected $method; // GET|POST
 
     public function __construct($config)
@@ -69,6 +69,9 @@ class Client
         $url = "https://$serviceUrl/$path";
         $data = $str . "&Signature=" . $signature;
 
+        $this->log($url);
+        $this->log($data);
+
         if ($this->method == 'GET') {
             $url = "$url?$data";
         }
@@ -88,8 +91,9 @@ class Client
         $info = curl_getinfo($ch);
         curl_close($ch);
 
-        //print_r($response);
-        //print_r($info);
+        $this->log($response);
+        $this->log($info);
+        $this->log(str_repeat('-', 60));
 
         $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
         return simplexml_load_string($response);
@@ -98,6 +102,15 @@ class Client
     public function getConfig()
     {
         return $this->config;
+    }
+
+    public function log($message)
+    {
+        $today = date('ymd');
+        $filename = "/amazon-mws-$today.log";
+
+        $text = date('Y-m-d h:i:s ') . $message . PHP_EOL;
+        error_log($text, 3, $filename);
     }
 
     public function feedApi() { return new FeedApi($this); }
