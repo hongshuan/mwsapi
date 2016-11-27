@@ -6,7 +6,7 @@ return [
         'SellerId'      => '',
         'MarketplaceId' => '',
         'SecretKey'     => '',
-        'ServiceUrl'    => 'https://mws.amazonservices.ca/',
+        'ServiceUrl'    => 'mws.amazonservices.ca',  // no https:// prefix, no trailing /
         'AuthToken'     => '',
     ],
 
@@ -15,7 +15,7 @@ return [
         'SellerId'      => '',
         'MarketplaceId' => '',
         'SecretKey'     => '',
-        'ServiceUrl'    => 'https://mws.amazonservices.com/',
+        'ServiceUrl'    => 'mws.amazonservices.com',  // no https:// prefix, no trailing /
         'AuthToken'     => '',
     ]
 ];
