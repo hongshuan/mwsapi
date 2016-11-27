@@ -217,20 +217,10 @@ function genInvoke()
     echo "\t\t", "\$url = self::PATH;\n";
     echo "\n";
 
-    echo "\t\t", "\$config = \$this->client->getConfig()\n";
+    echo "\t\t", "\$this->params['Version'] = self::VERSION;\n";
     echo "\n";
 
-    echo "\t\t", "\$this->params['AWSAccessKeyId']   = \$config['AWSAccessKeyId'];\n";
-    echo "\t\t", "\$this->params['SellerId']         = \$config['SellerId'];\n";
-    echo "\t\t", "\$this->params['MarketplaceId']    = \$config['MarketplaceId'];\n";
-    echo "\n";
-    echo "\t\t", "\$this->params['SignatureMethod']  = 'HmacSHA256';\n";
-    echo "\t\t", "\$this->params['SignatureVersion'] = '2';\n";
-    echo "\t\t", "\$this->params['Timestamp']        = gmdate('Y-m-d\\TH:i:s.\\\\0\\\\0\\\\0\\\\Z', time());\n";
-    echo "\t\t", "\$this->params['Version']          = self::VERSION;\n";
-    echo "\n";
-
-    echo "\t\t", "\$response = \$this->client->httpGet(\$url", ", \$this->params", ");\n";
+    echo "\t\t", "\$response = \$this->client->httpGet(\$url, \$this->params);\n";
     echo "\n";
     echo "\t\t", "// TODO: parse response\n";
     echo "\t\t", "return \$response;\n";

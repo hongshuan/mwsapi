@@ -12,7 +12,7 @@ class Client
         $this->logger = null;
         $this->config = $config;
 
-        $required = [ 'AWSAccessKeyId', 'SellerId', 'MarketplaceId', 'SecretKey', 'ServiceUrl' ];
+        $required = [ 'AccessKey', 'SellerId', 'MarketplaceId', 'SecretKey', 'ServiceUrl' ];
 
         foreach ($required as $key) {
             if (!isset($config[$key])) {
@@ -27,6 +27,12 @@ class Client
 
     public function httpPost($path, $params, $options = [])
     {
+         $params['AWSAccessKeyId']   = $this->config['AccessKey'];
+         $params['SellerId']         = $this->config['SellerId'];
+         $params['MarketplaceId']    = $this->config['MarketplaceId'];
+         $params['SignatureMethod']  = 'HmacSHA256';
+         $params['SignatureVersion'] = '2';
+         $params['Timestamp']        = gmdate('Y-m-d\TH:i:s.\\0\\0\\0\\Z', time());
     }
 
     public function sendRequest($url, $params, $options = [])
