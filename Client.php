@@ -6,6 +6,7 @@ class Client
 {
     protected $config;
     protected $logger;
+    protected $method; // GET|POST
 
     public function __construct($config)
     {
@@ -23,9 +24,17 @@ class Client
 
     public function httpGet($path, $params, $options = [])
     {
+        $this->method = 'GET';
+        return $this->sendRequest($path, $params, $options);
     }
 
     public function httpPost($path, $params, $options = [])
+    {
+        $this->method = 'POST';
+        return $this->sendRequest($path, $params, $options);
+    }
+
+    public function sendRequest($path, $params, $options = [])
     {
          $params['AWSAccessKeyId']   = $this->config['AccessKey'];
          $params['SellerId']         = $this->config['SellerId'];
@@ -33,11 +42,6 @@ class Client
          $params['SignatureMethod']  = 'HmacSHA256';
          $params['SignatureVersion'] = '2';
          $params['Timestamp']        = gmdate('Y-m-d\TH:i:s.\\0\\0\\0\\Z', time());
-    }
-
-    public function sendRequest($url, $params, $options = [])
-    {
-        // call curlGet($url, $params);
     }
 
     public function getConfig()
