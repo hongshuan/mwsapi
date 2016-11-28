@@ -78,6 +78,7 @@ foreach($json as $key => $val) {
         endClass('MerchantFulfillment');
     }
 
+    /*
     if ($key == 'OffAmazonPayments') {
         genClass('OffAmazonPayments', $val);
         genConstruct();
@@ -99,6 +100,7 @@ foreach($json as $key => $val) {
         genInvoke();
         endClass('OffAmazonPaymentSandbox');
     }
+    */
 
     if ($key == 'Orders') {
         genClass('Orders', $val);
@@ -141,18 +143,19 @@ foreach($json as $key => $val) {
             //echo "\t\t", $name, EOL;
             genMethod($name, $calls);
         }
-        genInvoke();
-        endClass('Reports');
+#       genInvoke();
+#       endClass('Reports');
 
         //echo "\tReportSchedule", EOL;
-        genClass('ReportSchedule', $val);
-        genConstruct();
+#       genClass('ReportSchedule', $val);
+#       genConstruct();
         foreach($val->Groups->ReportSchedule->ApiCalls as $name => $calls) {
             //echo "\t\t", $name, EOL;
             genMethod($name, $calls);
         }
         genInvoke();
-        endClass('ReportSchedule');
+#       endClass('ReportSchedule');
+        endClass('Reports');
     }
 
     if ($key == 'Sellers') {
@@ -168,18 +171,20 @@ foreach($json as $key => $val) {
 
     if ($key == 'Subscriptions') {
         //echo "\tDestinations", EOL;
-        genClass('SubscriptionDestinations', $val);
+        genClass('Subscriptions', $val);
         genConstruct();
+#       genClass('SubscriptionDestinations', $val);
+#       genConstruct();
         foreach($val->Groups->Destinations->ApiCalls as $name => $calls) {
             //echo "\t\t", $name, EOL;
             genMethod($name, $calls);
         }
-        genInvoke();
-        endClass('SubscriptionDestinations');
+#       genInvoke();
+#       endClass('SubscriptionDestinations');
 
         //echo "\tSubscriptions", EOL;
-        genClass('Subscriptions', $val);
-        genConstruct();
+#       genClass('Subscriptions', $val);
+#       genConstruct();
         foreach($val->Groups->Subscriptions->ApiCalls as $name => $calls) {
             //echo "\t\t", $name, EOL;
             genMethod($name, $calls);
