@@ -12,7 +12,7 @@ class MwsApi
 
        #$config = $client->getConfig();
 
-       #$this->params['AWSAccessKeyId'] = $config['AWSAccessKeyId'];
+       #$this->params['AWSAccessKeyId'] = $config['AccessKeyId'];
        #$this->params['SellerId']       = $config['SellerId'];
        #$this->params['MarketplaceId']  = $config['MarketplaceId'];
     }
@@ -31,9 +31,14 @@ class MwsApi
 
     public function __set($name, $value)
     {
+        $this->params[$name] = $value;
+    }
+
+    public function __call($name, $value)
+    {
         if (substr($name, 0, 3) == 'set') {
             $name = substr($name, 3);
-            $this->params[$name] = $value;
+            $this->params[$name] = current($value);
         }
         return $this;
     }
