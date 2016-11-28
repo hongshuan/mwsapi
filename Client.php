@@ -113,16 +113,24 @@ class Client
         error_log($text, 3, $filename);
     }
 
-    public function feedApi() { return new FeedApi($this); }
-    public function financeApi() { return new FinanceApi($this); }
-    public function fulfillmentByAmazonApi() { return new FulfillmentByAmazonApi($this); }
-    public function merchantFulfillmentApi() { return new MerchantFulfillmentApi($this); }
-    public function offAmazonPaymentApi() { return new OffAmazonPaymentApi($this); }
+    public function feedApi() { return new Feeds($this); }
+    public function financeApi() { return new Finances($this); }
+
+    public function fbaInboundApi() { return new FBAInbound($this); }
+    public function fbaOutboundApi() { return new FBAOutbound($this); }
+    public function fbaInventoryApi() { return new FBAInventory($this); }
+
+    public function merchantFulfillmentApi() { return new MerchantFulfillment($this); }
+
+    public function offAmazonPaymentApi() { return new OffAmazonPayments($this); }
     public function offAmazonPaymentsSandboxApi() { return new OffAmazonPaymentsSandboxApi($this); }
-    public function orderApi() { return new OrderApi($this); }
-    public function productApi() { return new ProductApi($this); }
-    public function recommendationApi() { return new RecommendationApi($this); }
-    public function reportApi() { return new ReportApi($this); }
-    public function sellerApi() { return new SellerApi($this); }
-    public function subscriptionApi() { return new SubscriptionApi($this); }
+
+    public function orderApi() { return new Orders($this); }
+    public function productApi() { return new Products($this); }
+    public function recommendationApi() { return new Recommendations($this); }
+    public function reportApi() { return new Reports($this); }
+    public function reportScheduleApi() { return new ReportSchedule($this); }
+    public function sellerApi() { return new Sellers($this); }
+    public function subscriptionApi() { return new Subscriptions($this); }
+    public function subscriptionDestinationApi() { return new SubscriptionDestinations($this); }
 }
