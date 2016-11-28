@@ -204,8 +204,9 @@ function genMethod($name, $calls)
         codeln($str);
     }
     codeln('');
-    codeln("\$this->params['Action'] = '". $name. "';");
-    codeln('return $this->invoke();');
+    codeln("\$this->params['Action'] = '". $name. "';"); codeln('');
+    codeln('$response = $this->invoke();'); codeln('');
+    codeln('return $response->'.$name.'Result;');
     codeln("}");
     codeln("");
 }
