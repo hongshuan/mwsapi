@@ -107,7 +107,7 @@ class Client
     public function log($message)
     {
         $today = date('ymd');
-        $filename = "/amazon-mws-$today.log";
+        $filename = __DIR__ . "/logs/amazon-mws-$today.log";
 
         $text = date('Y-m-d h:i:s ') . $message . PHP_EOL;
         error_log($text, 3, $filename);

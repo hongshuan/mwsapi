@@ -1,2 +1,2 @@
 config.php
-amazon-mws-*.log
+logs/
