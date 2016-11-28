@@ -116,14 +116,14 @@ class Client
     public function feedApi() { return new Feeds($this); }
     public function financeApi() { return new Finances($this); }
 
-    public function fbaInboundApi() { return new FBAInbound($this); }
-    public function fbaOutboundApi() { return new FBAOutbound($this); }
-    public function fbaInventoryApi() { return new FBAInventory($this); }
+    public function fulfillmentInbound() { return new FulfillmentInbound($this); }
+    public function fulfillmentOutbound() { return new FulfillmentOutbound($this); }
+    public function fulfillmentInventory() { return new FulfillmentInventory($this); }
 
     public function merchantFulfillmentApi() { return new MerchantFulfillment($this); }
 
     public function offAmazonPaymentApi() { return new OffAmazonPayments($this); }
-    public function offAmazonPaymentsSandboxApi() { return new OffAmazonPaymentsSandboxApi($this); }
+    public function offAmazonPaymentSandboxApi() { return new OffAmazonPaymentSandbox($this); }
 
     public function orderApi() { return new Orders($this); }
     public function productApi() { return new Products($this); }

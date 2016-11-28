@@ -87,14 +87,14 @@ foreach($json as $key => $val) {
     }
 
     if ($key == 'OffAmazonPayments-Sandbox') {
-        genClass('OffAmazonPayments', $val);
+        genClass('OffAmazonPaymentSandbox', $val);
         genConstruct();
         foreach($val->Groups->{'OffAmazonPayments-Sandbox'}->ApiCalls as $name => $calls) {
             //echo "\t", $name, EOL;
             genMethod($name, $calls);
         }
         genInvoke();
-        endClass('OffAmazonPayments');
+        endClass('OffAmazonPaymentSandbox');
     }
 
     if ($key == 'Orders') {
@@ -165,14 +165,14 @@ foreach($json as $key => $val) {
 
     if ($key == 'Subscriptions') {
         //echo "\tDestinations", EOL;
-        genClass('Destinations', $val);
+        genClass('SubscriptionDestinations', $val);
         genConstruct();
         foreach($val->Groups->Destinations->ApiCalls as $name => $calls) {
             //echo "\t\t", $name, EOL;
             genMethod($name, $calls);
         }
         genInvoke();
-        endClass('Destinations');
+        endClass('SubscriptionDestinations');
 
         //echo "\tSubscriptions", EOL;
         genClass('Subscriptions', $val);
