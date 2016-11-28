@@ -1,6 +1,22 @@
 <?php
 
 include 'Client.php';
+#include 'Feeds.php';
+#include 'Finances.php';
+#include 'FBAInbound.php';
+#include 'FBAOutbound.php';
+#include 'FBAInventory.php';
+#include 'MerchantFulfillment.php';
+#include 'OffAmazonPayments.php';
+#include 'OffAmazonPaymentsSandboxApi.php';
+#include 'Orders.php';
+#include 'Products.php';
+#include 'Recommendations.php';
+#include 'Reports.php';
+#include 'ReportSchedule.php';
+#include 'Sellers.php';
+#include 'Subscriptions.php';
+#include 'SubscriptionDestinations.php';
 
 $config = include 'config.php';
 
