@@ -42,16 +42,18 @@ foreach($json as $key => $val) {
         }
         genInvoke();
         endClass('FulfillmentInbound');
+        //codeln('class FBAInbound extends FulfillmentInbound { }');
 
         //echo "\tFulfillmentInventory", EOL;
         genClass('FulfillmentInventory', $val);
         genConstruct();
         foreach($val->Groups->FulfillmentInventory->ApiCalls as $name => $calls) {
-            echo "\t\t", $name, EOL;
+            //echo "\t\t", $name, EOL;
             genMethod($name, $calls);
         }
         genInvoke();
         endClass('FulfillmentInventory');
+        //codeln('class FBAInventory extends FulfillmentInventory { }');
 
         //echo "\tFulfillmentOutbound", EOL;
         genClass('FulfillmentOutbound', $val);
@@ -62,6 +64,7 @@ foreach($json as $key => $val) {
         }
         genInvoke();
         endClass('FulfillmentOutbound');
+        //codeln('class FBAOutbound extends FulfillmentOutbound { }');
     }
 
     if ($key == 'MerchantFulfillment') {
