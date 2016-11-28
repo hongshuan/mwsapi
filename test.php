@@ -18,13 +18,14 @@ include 'Client.php';
 #include 'Subscriptions.php';
 #include 'SubscriptionDestinations.php';
 
-$config = include 'config.php';
+$config = include 'logs/config.php';
 
 function testFeedApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $feedApi = $client->feedApi();
-    $feedApi->getServiceStatus();
+    $response = $feedApi->getServiceStatus();
+    print_r($response)
 }
 testFeedApi($config);
 
@@ -32,7 +33,8 @@ function testFinanceApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $financeApi = $client->financeApi();
-    $financeApi->getServiceStatus();
+    $response = $financeApi->getServiceStatus();
+    print_r($response)
 }
 #testFinanceApi($config);
 
@@ -40,7 +42,8 @@ function testFbaInboundApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $fbaInboundApi = $client->fbaInboundApi();
-    $fbaInboundApi->getServiceStatus();
+    $response = $fbaInboundApi->getServiceStatus();
+    print_r($response)
 }
 #testFbaInboundApi($config);
 
@@ -48,7 +51,8 @@ function testFbaOutboundApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $fbaOutboundApi = $client->fbaOutboundApi();
-    $fbaOutboundApi->getServiceStatus();
+    $response = $fbaOutboundApi->getServiceStatus();
+    print_r($response)
 }
 #testFbaOutboundApi($config);
 
@@ -56,7 +60,8 @@ function testFbaInventoryApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $fbaInventoryApi = $client->fbaInventoryApi();
-    $fbaInventoryApi->getServiceStatus();
+    $response = $fbaInventoryApi->getServiceStatus();
+    print_r($response)
 }
 #testFbaInventoryApi($config);
 
@@ -64,7 +69,8 @@ function testMerchantFulfillmentApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $merchantFulfillmentApi = $client->merchantFulfillmentApi();
-    $merchantFulfillmentApi->getServiceStatus();
+    $response = $merchantFulfillmentApi->getServiceStatus();
+    print_r($response)
 }
 #testMerchantFulfillmentApi($config);
 
@@ -72,7 +78,8 @@ function testOffAmazonPaymentApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $offAmazonPaymentApi = $client->offAmazonPaymentApi();
-    $offAmazonPaymentApi->getServiceStatus();
+    $response = $offAmazonPaymentApi->getServiceStatus();
+    print_r($response)
 }
 #testOffAmazonPaymentApi($config);
 
@@ -80,7 +87,8 @@ function testOffAmazonPaymentsSandboxApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $offAmazonPaymentsSandboxApi = $client->offAmazonPaymentsSandboxApi();
-    $offAmazonPaymentsSandboxApi->getServiceStatus();
+    $response = $offAmazonPaymentsSandboxApi->getServiceStatus();
+    print_r($response)
 }
 #testOffAmazonPaymentsSandboxApi($config);
 
@@ -88,7 +96,8 @@ function testOrderApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $orderApi = $client->orderApi();
-    $orderApi->getServiceStatus();
+    $response = $orderApi->getServiceStatus();
+    print_r($response)
 }
 #testOrderApi($config);
 
@@ -96,7 +105,8 @@ function testProductApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $productApi = $client->productApi();
-    $productApi->getServiceStatus();
+    $response = $productApi->getServiceStatus();
+    print_r($response)
 }
 #testProductApi($config);
 
@@ -104,7 +114,8 @@ function testRecommendationApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $recommendationApi = $client->recommendationApi();
-    $recommendationApi->getServiceStatus();
+    $response = $recommendationApi->getServiceStatus();
+    print_r($response)
 }
 #testRecommendationApi($config);
 
@@ -112,7 +123,8 @@ function testReportApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $reportApi = $client->reportApi();
-    $reportApi->getServiceStatus();
+    $response = $reportApi->getServiceStatus();
+    print_r($response)
 }
 #testReportApi($config);
 
@@ -120,7 +132,8 @@ function testReportScheduleApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $reportScheduleApi = $client->reportScheduleApi();
-    $reportScheduleApi->getServiceStatus();
+    $response = $reportScheduleApi->getServiceStatus();
+    print_r($response)
 }
 #testReportScheduleApi($config);
 
@@ -128,7 +141,8 @@ function testSellerApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $sellerApi = $client->sellerApi();
-    $sellerApi->getServiceStatus();
+    $response = $sellerApi->getServiceStatus();
+    print_r($response)
 }
 #testSellerApi($config);
 
@@ -136,7 +150,8 @@ function testSubscriptionApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $subscriptionApi = $client->subscriptionApi();
-    $subscriptionApi->getServiceStatus();
+    $response = $subscriptionApi->getServiceStatus();
+    print_r($response)
 }
 #testSubscriptionApi($config);
 
@@ -144,6 +159,7 @@ function testSubscriptionDestinationApi($config)
 {
     $client = new Amazon\Mws\Client($config['StoreNameA']);
     $subscriptionDestinationApi = $client->subscriptionDestinationApi();
-    $subscriptionDestinationApi->getServiceStatus();
+    $response = $subscriptionDestinationApi->getServiceStatus();
+    print_r($response)
 }
 #testSubscriptionDestinationApi($config);
