@@ -26,10 +26,6 @@ class Orders extends MwsApi
 
         $response = $this->invoke();
 
-        if ($response->getName() == 'ErrorResponse') {
-            return $response;
-        }
-
         return $response->GetOrderResult;
     }
 
