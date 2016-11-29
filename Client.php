@@ -114,7 +114,7 @@ class Client
         $filename = __DIR__ . "/logs/amazon-mws-$today.log";
 
        #$text = date('Y-m-d h:i:s ') . $message . "\n";
-        $text = $message . "\n";
+        $text = trim($message) . "\n\n";
         error_log($text, 3, $filename);
     }
 
