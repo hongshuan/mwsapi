@@ -227,6 +227,9 @@ function genInvoke()
     codeln(    '$this->params[\'Version\'] = self::VERSION;'); codeln('');
     codeln(    '$response = $this->client->httpGet($path, $this->params);'); codeln('');
     codeln(    '$this->params = []; // reset for next api call'); codeln('');
+    codeln(    'if ($response->getName() == \'ErrorResponse\') {');
+    codeln(        'throw new \Exception($response->Error->Message);');
+    codeln(    '}'); codeln('');
     codeln(    '// TODO: parse response');
     codeln(    'return $response;');
     codeln('}'); codeln('');
