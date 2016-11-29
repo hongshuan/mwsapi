@@ -8,14 +8,28 @@ class Orders extends MwsApi
     const VERSION = '2013-09-01';
     const PATH = '/Orders/2013-09-01';
     
-    public function getOrder()
+    public function getOrder($orderId)
     {
         // $params['AmazonOrderId.Id.-'] = (Required)  (List)
         
+        if (!is_array($orderId)) {
+            $orderId = (array)$orderId;
+        }
+
+        $N = 1;
+        foreach ($orderId as $id) {
+            $this->params["AmazonOrderId.Id.$N"] = $id;
+            $N++;
+        }
+        
         $this->params['Action'] = 'GetOrder';
-        
+
         $response = $this->invoke();
-        
+
+        if ($response->getName() == 'ErrorResponse') {
+            return $response;
+        }
+
         return $response->GetOrderResult;
     }
     
