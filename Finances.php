@@ -30,9 +30,11 @@ class Finances extends MwsApi
         return $response->ListFinancialEventGroupsResult;
     }
 
-    public function listFinancialEventGroupsByNextToken()
+    public function listFinancialEventGroupsByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListFinancialEventGroupsByNextToken';
 
@@ -56,9 +58,11 @@ class Finances extends MwsApi
         return $response->ListFinancialEventsResult;
     }
 
-    public function listFinancialEventsByNextToken()
+    public function listFinancialEventsByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListFinancialEventsByNextToken';
 

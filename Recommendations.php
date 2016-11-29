@@ -41,9 +41,11 @@ class Recommendations extends MwsApi
         return $response->ListRecommendationsResult;
     }
 
-    public function listRecommendationsByNextToken()
+    public function listRecommendationsByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListRecommendationsByNextToken';
 

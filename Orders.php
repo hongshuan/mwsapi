@@ -51,9 +51,11 @@ class Orders extends MwsApi
         return $response->ListOrderItemsResult;
     }
 
-    public function listOrderItemsByNextToken()
+    public function listOrderItemsByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListOrderItemsByNextToken';
 
@@ -84,9 +86,11 @@ class Orders extends MwsApi
         return $response->ListOrdersResult;
     }
 
-    public function listOrdersByNextToken()
+    public function listOrdersByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListOrdersByNextToken';
 

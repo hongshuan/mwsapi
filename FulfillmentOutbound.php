@@ -4,9 +4,9 @@ namespace Amazon\Mws;
 
 class FulfillmentOutbound extends MwsApi
 {
-    const NAME = 'Fulfillment';
+    const NAME = 'FulfillmentOutboundShipment';
     const VERSION = '2010-10-01';
-    const PATH = '/Fulfillment/2010-10-01';
+    const PATH = '/FulfillmentOutboundShipment/2010-10-01/';
 
     public function cancelFulfillmentOrder()
     {
@@ -109,9 +109,11 @@ class FulfillmentOutbound extends MwsApi
         return $response->ListAllFulfillmentOrdersResult;
     }
 
-    public function listAllFulfillmentOrdersByNextToken()
+    public function listAllFulfillmentOrdersByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListAllFulfillmentOrdersByNextToken';
 

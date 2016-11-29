@@ -26,9 +26,11 @@ class Sellers extends MwsApi
         return $response->ListMarketplaceParticipationsResult;
     }
 
-    public function listMarketplaceParticipationsByNextToken()
+    public function listMarketplaceParticipationsByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListMarketplaceParticipationsByNextToken';
 

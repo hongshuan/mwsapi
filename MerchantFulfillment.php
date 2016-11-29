@@ -6,7 +6,7 @@ class MerchantFulfillment extends MwsApi
 {
     const NAME = 'Merchant Fulfillment';
     const VERSION = '2015-06-01';
-    const PATH = '/Merchant Fulfillment/2015-06-01';
+    const PATH = '/MerchantFulfillment/2015-06-01';
 
     public function cancelShipment()
     {

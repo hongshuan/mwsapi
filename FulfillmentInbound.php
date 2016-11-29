@@ -4,9 +4,9 @@ namespace Amazon\Mws;
 
 class FulfillmentInbound extends MwsApi
 {
-    const NAME = 'Fulfillment';
+    const NAME = 'FulfillmentInboundShipment';
     const VERSION = '2010-10-01';
-    const PATH = '/Fulfillment/2010-10-01';
+    const PATH = '/FulfillmentInboundShipment/2010-10-01';
 
     public function confirmPreorder()
     {
@@ -214,9 +214,11 @@ class FulfillmentInbound extends MwsApi
         return $response->ListInboundShipmentItemsResult;
     }
 
-    public function listInboundShipmentItemsByNextToken()
+    public function listInboundShipmentItemsByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListInboundShipmentItemsByNextToken';
 
@@ -239,9 +241,11 @@ class FulfillmentInbound extends MwsApi
         return $response->ListInboundShipmentsResult;
     }
 
-    public function listInboundShipmentsByNextToken()
+    public function listInboundShipmentsByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListInboundShipmentsByNextToken';
 

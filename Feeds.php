@@ -52,9 +52,11 @@ class Feeds extends MwsApi
         return $response->GetFeedSubmissionListResult;
     }
 
-    public function getFeedSubmissionListByNextToken()
+    public function getFeedSubmissionListByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'GetFeedSubmissionListByNextToken';
 

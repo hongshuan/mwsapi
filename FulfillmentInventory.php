@@ -4,9 +4,9 @@ namespace Amazon\Mws;
 
 class FulfillmentInventory extends MwsApi
 {
-    const NAME = 'Fulfillment';
+    const NAME = 'FulfillmentInventory';
     const VERSION = '2010-10-01';
-    const PATH = '/Fulfillment/2010-10-01';
+    const PATH = '/FulfillmentInventory/2010-10-01';
 
     public function getServiceStatus()
     {
@@ -31,9 +31,11 @@ class FulfillmentInventory extends MwsApi
         return $response->ListInventorySupplyResult;
     }
 
-    public function listInventorySupplyByNextToken()
+    public function listInventorySupplyByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'ListInventorySupplyByNextToken';
 

@@ -64,9 +64,11 @@ class Reports extends MwsApi
         return $response->GetReportListResult;
     }
 
-    public function getReportListByNextToken()
+    public function getReportListByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'GetReportListByNextToken';
 
@@ -105,9 +107,11 @@ class Reports extends MwsApi
         return $response->GetReportRequestListResult;
     }
 
-    public function getReportRequestListByNextToken()
+    public function getReportRequestListByNextToken($nextToken)
     {
         // $params['NextToken'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'GetReportRequestListByNextToken';
 
@@ -153,9 +157,11 @@ class Reports extends MwsApi
         return $response->GetReportScheduleListResult;
     }
 
-    public function getReportScheduleListByNextToken()
+    public function getReportScheduleListByNextToken($nextToken)
     {
         // $params['NextToken.-'] = (Required)
+
+        $this->params['NextToken'] = $nextToken;
 
         $this->params['Action'] = 'GetReportScheduleListByNextToken';
 
