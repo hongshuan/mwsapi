@@ -121,9 +121,14 @@ class Client
     public function feedApi() { return new Feeds($this); }
     public function financeApi() { return new Finances($this); }
 
-    public function fulfillmentInbound() { return new FulfillmentInbound($this); }
-    public function fulfillmentOutbound() { return new FulfillmentOutbound($this); }
-    public function fulfillmentInventory() { return new FulfillmentInventory($this); }
+    public function fulfillmentInboundApi() { return new FulfillmentInbound($this); }
+    public function fulfillmentOutboundApi() { return new FulfillmentOutbound($this); }
+    public function fulfillmentInventoryApi() { return new FulfillmentInventory($this); }
+
+    // aliases
+    public function fbaInboundApi() { return new FulfillmentInbound($this); }
+    public function fbaOutboundApi() { return new FulfillmentOutbound($this); }
+    public function fbaInventoryApi() { return new FulfillmentInventory($this); }
 
     public function merchantFulfillmentApi() { return new MerchantFulfillment($this); }
 

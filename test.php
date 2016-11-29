@@ -46,7 +46,8 @@ function testFinanceApi($config)
 function testFbaInboundApi($config)
 {
     $client = new Amazon\Mws\Client($config);
-    $fbaInboundApi = $client->fbaInboundApi();
+#   $fbaInboundApi = $client->fbaInboundApi();
+    $fbaInboundApi = $client->fulfillmentInboundApi();
     $response = $fbaInboundApi->getServiceStatus();
     print_r($response);
 }
@@ -55,7 +56,8 @@ function testFbaInboundApi($config)
 function testFbaOutboundApi($config)
 {
     $client = new Amazon\Mws\Client($config);
-    $fbaOutboundApi = $client->fbaOutboundApi();
+#   $fbaOutboundApi = $client->fbaOutboundApi();
+    $fbaOutboundApi = $client->fulfillmentOutboundApi();
     $response = $fbaOutboundApi->getServiceStatus();
     print_r($response);
 }
@@ -64,7 +66,8 @@ function testFbaOutboundApi($config)
 function testFbaInventoryApi($config)
 {
     $client = new Amazon\Mws\Client($config);
-    $fbaInventoryApi = $client->fbaInventoryApi();
+#   $fbaInventoryApi = $client->fbaInventoryApi();
+    $fbaInventoryApi = $client->fulfillmentInventoryApi();
     $response = $fbaInventoryApi->getServiceStatus();
     print_r($response);
 }
@@ -104,7 +107,7 @@ function testOrderApi($config)
     $response = $orderApi->getServiceStatus();
     print_r($response);
 }
-testOrderApi($config);
+#testOrderApi($config);
 
 function testProductApi($config)
 {
