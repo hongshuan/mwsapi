@@ -21,7 +21,7 @@ class Orders extends MwsApi
             $this->params["AmazonOrderId.Id.$N"] = $id;
             $N++;
         }
-        
+
         $this->params['Action'] = 'GetOrder';
 
         $response = $this->invoke();
@@ -38,9 +38,11 @@ class Orders extends MwsApi
         return $response->GetServiceStatusResult;
     }
 
-    public function listOrderItems()
+    public function listOrderItems($orderId)
     {
         // $params['AmazonOrderId'] = (Required)
+
+        $this->params['AmazonOrderId'] = $orderId;
 
         $this->params['Action'] = 'ListOrderItems';
 
@@ -110,6 +112,4 @@ class Orders extends MwsApi
         // TODO: parse response
         return $response;
     }
-
 }
-

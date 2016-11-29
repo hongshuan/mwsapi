@@ -105,7 +105,8 @@ function testOrderApi($config)
     $client = new Amazon\Mws\Client($config);
     $orderApi = $client->orderApi();
 #   $response = $orderApi->getServiceStatus();
-    $response = $orderApi->getOrder(['701-2909100-8898624', '701-7599957-6137843']);
+#   $response = $orderApi->getOrder(['701-2909100-8898624', '701-7599957-6137843']);
+    $response = $orderApi->listOrderItems('701-2909100-8898624');
     print_r($response);
 }
 testOrderApi($config);
