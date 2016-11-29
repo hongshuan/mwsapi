@@ -77,7 +77,7 @@ class Finances extends MwsApi
 
         $this->params['Version'] = self::VERSION;
 
-        $response = $this->client->httpGet($path, $this->params);
+        $response = $this->client->httpPost($path, $this->params);
 
         $this->params = []; // reset for next api call
 
