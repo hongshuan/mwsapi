@@ -318,6 +318,11 @@ function codeln($code)
 {
     static $indent = 0;
 
+    if ($code == '') {
+        echo EOL;
+        return;
+    }
+
     if (substr($code, -1) == '}') {
         $indent = max($indent-1, 0);
     }
