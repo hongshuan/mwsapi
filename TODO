@@ -30,3 +30,59 @@ Reports: POST
 Seller: POST
 Subscriptions: POST
 #-----------------------------------------------------------
+POST /Feeds/2009-01-01 HTTP/1.1
+Content-Type: x-www-form-urlencoded
+Host: mws.amazonservices.com
+User-Agent: <Your User Agent Header>
+
+POST /Finances/2015-05-01 HTTP/1.1
+Content-Type: x-www-form-urlencoded
+Host: mws.amazonservices.com
+User-Agent: <Your User Agent Header>
+
+https://mws.amazonservices.com/FulfillmentInboundShipment/2010-10-01
+https://mws.amazonservices.com/FulfillmentInventory/2010-10-01
+https://mws.amazonservices.com/FulfillmentOutboundShipment/2010-10-01/ 
+
+https://mws.amazonservices.com/MerchantFulfillment/2015-06-01
+https://mws.amazonservices.com/Orders/2013-09-01
+
+POST /Products/2011-10-01 HTTP/1.1
+Content-Type: x-www-form-urlencoded
+Host: mws.amazonservices.com
+User-Agent: <Your User Agent Header>
+
+POST /Recommendations/2013-04-01 HTTP/1.1
+Content-Type: x-www-form-urlencoded
+Host: mws.amazonservices.com
+User-Agent: <Your User Agent Header>
+
+POST /Reports/2009-01-01 HTTP/1.1
+Content-Type: x-www-form-urlencoded
+Host: mws.amazonservices.com
+User-Agent: <Your User Agent Header>
+
+POST /Sellers/2011-07-01 HTTP/1.1
+Content-Type: x-www-form-urlencoded
+Host: mws.amazonservices.com
+User-Agent: <Your User Agent Header>
+
+POST /Subscriptions/2013-07-01 HTTP/1.1
+Content-Type: x-www-form-urlencoded
+Host: mws.amazonservices.com
+User-Agent: <Your User Agent Header>
+
+If a request is unsuccessful, the main response element is ErrorResponse,
+irrespective of the action requested. This element contains one or more
+Error child elements.
+
+<ErrorResponse xmlns="http://mws.amazonservices.com/doc/2009-01-01/">
+    <Error>
+        <Type>Sender</Type>
+        <Code>InvalidClientTokenId</Code>
+        <Message> The AWS Access Key Id you provided does not exist in our records. </Message>
+        <Detail>com.amazonservices.mws.model.Error$Detail@17b6643</Detail>
+    </Error>
+    <RequestID>b7afc6c3-6f75-4707-bcf4-0475ad23162c</RequestID>
+</ErrorResponse>
+
