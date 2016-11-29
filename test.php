@@ -1,22 +1,27 @@
 <?php
 
 include 'Client.php';
-#include 'Feeds.php';
-#include 'Finances.php';
-#include 'FBAInbound.php';
-#include 'FBAOutbound.php';
-#include 'FBAInventory.php';
-#include 'MerchantFulfillment.php';
+include 'MwsApi.php';
+include 'Feeds.php';
+include 'Finances.php';
+#nclude 'FBAInbound.php';
+#nclude 'FBAOutbound.php';
+#nclude 'FBAInventory.php';
+include 'FulfillmentInbound.php';
+include 'FulfillmentInventory.php';
+include 'FulfillmentOutbound.php';
+include 'MerchantFulfillment.php';
+include 'Orders.php';
+include 'Products.php';
+include 'Recommendations.php';
+include 'Reports.php';
+include 'Sellers.php';
+include 'Subscriptions.php';
+
+#include 'ReportSchedule.php';
+#include 'SubscriptionDestinations.php';
 #include 'OffAmazonPayments.php';
 #include 'OffAmazonPaymentsSandboxApi.php';
-#include 'Orders.php';
-#include 'Products.php';
-#include 'Recommendations.php';
-#include 'Reports.php';
-#include 'ReportSchedule.php';
-#include 'Sellers.php';
-#include 'Subscriptions.php';
-#include 'SubscriptionDestinations.php';
 
 $config = include 'logs/config.php';
 
@@ -27,7 +32,7 @@ function testFeedApi($config)
     $response = $feedApi->getServiceStatus();
     print_r($response);
 }
-testFeedApi($config);
+#testFeedApi($config);
 
 function testFinanceApi($config)
 {
@@ -99,7 +104,7 @@ function testOrderApi($config)
     $response = $orderApi->getServiceStatus();
     print_r($response);
 }
-#testOrderApi($config);
+testOrderApi($config);
 
 function testProductApi($config)
 {

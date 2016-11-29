@@ -1,5 +1,7 @@
 <?php
 
+namespace Amazon\Mws;
+
 class MwsApi
 {
     protected $client;

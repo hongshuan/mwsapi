@@ -93,7 +93,7 @@ class Client
 
         $this->log($response);
         $this->log($info);
-        $this->log(str_repeat('-', 60));
+        $this->log(str_repeat('-', 80));
 
         $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
         return simplexml_load_string($response);
@@ -106,10 +106,15 @@ class Client
 
     public function log($message)
     {
+        if (!is_scalar($message)) {
+            $message = print_r($message, true);
+        }
+
         $today = date('ymd');
         $filename = __DIR__ . "/logs/amazon-mws-$today.log";
 
-        $text = date('Y-m-d h:i:s ') . $message . PHP_EOL;
+       #$text = date('Y-m-d h:i:s ') . $message . "\n";
+        $text = $message . "\n";
         error_log($text, 3, $filename);
     }
 

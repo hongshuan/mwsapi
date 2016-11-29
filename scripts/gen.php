@@ -1,7 +1,7 @@
 <?php
 
 const EOL = "\n";
-const DEBUG = true;
+const DEBUG = false;
 
 $json = json_decode(file_get_contents(__DIR__ . '/mws-api.json'));
 
@@ -307,7 +307,7 @@ function endClass($className)
         ob_end_clean();
 
         file_put_contents("$className.php", "$code");
-        file_put_contents("$className.php", "<?php\n\nnamespace Amazon\\Mws;\n\n$code");
+#       file_put_contents("$className.php", "<?php\n\nnamespace Amazon\\Mws;\n\n$code");
     }
 }
 
