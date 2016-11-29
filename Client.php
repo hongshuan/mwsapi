@@ -82,7 +82,7 @@ class Client
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-        if ($this->method == 'GET') {
+        if ($this->method == 'POST') {
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
@@ -92,7 +92,7 @@ class Client
         curl_close($ch);
 
         $this->log($response);
-        $this->log($info);
+#       $this->log($info);
         $this->log(str_repeat('-', 80));
 
         $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
