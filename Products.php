@@ -39,6 +39,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
+#       return $response;
         return $response->GetCompetitivePricingForSKUResult;
     }
 
