@@ -174,7 +174,6 @@ class Products extends MwsApi
 
     public function getServiceStatus()
     {
-
         $this->params['Action'] = 'GetServiceStatus';
 
         $response = $this->invoke();
@@ -214,4 +213,3 @@ class Products extends MwsApi
     }
 
 }
-

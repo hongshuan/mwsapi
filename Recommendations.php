@@ -21,7 +21,6 @@ class Recommendations extends MwsApi
 
     public function getServiceStatus()
     {
-
         $this->params['Action'] = 'GetServiceStatus';
 
         $response = $this->invoke();
@@ -72,4 +71,3 @@ class Recommendations extends MwsApi
     }
 
 }
-

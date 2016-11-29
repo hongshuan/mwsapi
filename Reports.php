@@ -208,4 +208,3 @@ class Reports extends MwsApi
     }
 
 }
-

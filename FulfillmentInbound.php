@@ -170,7 +170,6 @@ class FulfillmentInbound extends MwsApi
 
     public function getServiceStatus()
     {
-
         $this->params['Action'] = 'GetServiceStatus';
 
         $response = $this->invoke();
@@ -308,4 +307,3 @@ class FulfillmentInbound extends MwsApi
     }
 
 }
-

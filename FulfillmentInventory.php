@@ -10,7 +10,6 @@ class FulfillmentInventory extends MwsApi
 
     public function getServiceStatus()
     {
-
         $this->params['Action'] = 'GetServiceStatus';
 
         $response = $this->invoke();
@@ -62,4 +61,3 @@ class FulfillmentInventory extends MwsApi
     }
 
 }
-

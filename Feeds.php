@@ -106,4 +106,3 @@ class Feeds extends MwsApi
     }
 
 }
-

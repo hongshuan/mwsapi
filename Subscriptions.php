@@ -22,7 +22,6 @@ class Subscriptions extends MwsApi
 
     public function getServiceStatus()
     {
-
         $this->params['Action'] = 'GetServiceStatus';
 
         $response = $this->invoke();
@@ -145,4 +144,3 @@ class Subscriptions extends MwsApi
     }
 
 }
-

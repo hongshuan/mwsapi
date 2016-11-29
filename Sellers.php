@@ -10,7 +10,6 @@ class Sellers extends MwsApi
 
     public function getServiceStatus()
     {
-
         $this->params['Action'] = 'GetServiceStatus';
 
         $response = $this->invoke();
@@ -20,7 +19,6 @@ class Sellers extends MwsApi
 
     public function listMarketplaceParticipations()
     {
-
         $this->params['Action'] = 'ListMarketplaceParticipations';
 
         $response = $this->invoke();
@@ -58,4 +56,3 @@ class Sellers extends MwsApi
     }
 
 }
-

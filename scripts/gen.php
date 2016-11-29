@@ -198,6 +198,8 @@ function genMethod($name, $calls)
 {
     codeln('public function '. lcfirst($name). '()');
     codeln('{');
+
+    $str = '';
     foreach ($calls->Parameters as $param) {
         $str = "// \$params['". $param->Name. "'] = ";
         if (isset($param->Required) && $param->Required) {
@@ -211,7 +213,9 @@ function genMethod($name, $calls)
         }
         codeln($str);
     }
-    codeln('');
+
+    if ($str) codeln('');
+
     codeln("\$this->params['Action'] = '". $name. "';"); codeln('');
     codeln('$response = $this->invoke();'); codeln('');
     codeln('return $response->'.$name.'Result;');
@@ -303,7 +307,7 @@ function genClass($className, $val)
 function endClass($className)
 {
     codeln('}');
-    codeln('');
+#   codeln('');
 
     if (!DEBUG) {
         $code = ob_get_contents();
