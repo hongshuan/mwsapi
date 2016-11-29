@@ -66,7 +66,7 @@ class Client
         $signature = urlencode(base64_encode($signature));
 
         // https://mws.amazonservices.com/Products/2011-10-01
-        $url = "https://$serviceUrl/$path";
+        $url = "https://$serviceUrl$path";
         $data = $str . "&Signature=" . $signature;
 
         $this->log($url);
