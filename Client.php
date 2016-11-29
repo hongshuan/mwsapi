@@ -51,7 +51,7 @@ class Client
         $url = "https://$serviceUrl$path";
         $data = $queryString . "&Signature=" . $signature;
 
-        $this->log($url);
+        $this->log($this->method.' '.$url);
         $this->log($data);
 
         if ($this->method == 'GET') {
@@ -60,8 +60,8 @@ class Client
 
         $ch = curl_init($url);
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/xml'));
-#       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: x-www-form-urlencoded'));
+#       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/xml'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: x-www-form-urlencoded'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 

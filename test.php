@@ -109,16 +109,17 @@ function testOrderApi($config)
     $response = $orderApi->listOrderItems('701-2909100-8898624');
     print_r($response);
 }
-testOrderApi($config);
+#testOrderApi($config);
 
 function testProductApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $productApi = $client->productApi();
-    $response = $productApi->getServiceStatus();
+#   $response = $productApi->getServiceStatus();
+    $response = $productApi->getCompetitivePricingForSKU('SYN-5702777');
     print_r($response);
 }
-#testProductApi($config);
+testProductApi($config);
 
 function testRecommendationApi($config)
 {

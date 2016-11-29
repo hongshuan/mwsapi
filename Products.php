@@ -20,10 +20,20 @@ class Products extends MwsApi
         return $response->GetCompetitivePricingForASINResult;
     }
 
-    public function getCompetitivePricingForSKU()
+    public function getCompetitivePricingForSKU($skus)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['SellerSKUList.SellerSKU.-'] = (Required)  (List)
+
+        if (!is_array($skus)) {
+            $skus = (array)$skus;
+        }
+
+        $N = 1;
+        foreach ($skus as $sku) {
+            $this->params["SellerSKUList.SellerSKU.$N"] = $sku;
+            $N++;
+        }
 
         $this->params['Action'] = 'GetCompetitivePricingForSKU';
 
@@ -200,7 +210,7 @@ class Products extends MwsApi
 
         $this->params['Version'] = self::VERSION;
 
-        $response = $this->client->httpPost($path, $this->params);
+        $response = $this->client->httpGet($path, $this->params);
 
         $this->params = []; // reset for next api call
 
