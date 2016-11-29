@@ -75,7 +75,7 @@ User-Agent: <Your User Agent Header>
 If a request is unsuccessful, the main response element is ErrorResponse,
 irrespective of the action requested. This element contains one or more
 Error child elements.
-
+#-----------------------------------------------------------
 <ErrorResponse xmlns="http://mws.amazonservices.com/doc/2009-01-01/">
     <Error>
         <Type>Sender</Type>
@@ -85,4 +85,34 @@ Error child elements.
     </Error>
     <RequestID>b7afc6c3-6f75-4707-bcf4-0475ad23162c</RequestID>
 </ErrorResponse>
+#-----------------------------------------------------------
+        if ($response->getName() == 'ErrorResponse') {
+            return $response;
+        }
+#-----------------------------------------------------------
+    public function getOrder($orderId)
+    {
+        // $params['AmazonOrderId.Id.-'] = (Required)  (List)
+        
+        if (!is_array($orderId)) {
+            $orderId = (array)$orderId;
+        }
 
+        $N = 1;
+        foreach ($orderId as $id) {
+            $this->params["AmazonOrderId.Id.$N"] = $id;
+            $N++;
+        }
+        
+        $this->params['Action'] = 'GetOrder';
+
+        $response = $this->invoke();
+
+        if ($response->getName() == 'ErrorResponse') {
+            return $response;
+        }
+
+        return $response->GetOrderResult;
+    }
+#-----------------------------------------------------------
+#-----------------------------------------------------------
