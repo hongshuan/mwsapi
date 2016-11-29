@@ -10,10 +10,23 @@ $productApi->set('ItemCondition', 'New');
 $productApi->set('SellerSKU', $skus);
 $response = $productApi->getLowestOfferListingsForSKU();
 #-----------------------------------------------------------
-$productApi->reset();   // for another call
+# $productApi->reset();   // for another call
 #-----------------------------------------------------------
 gen.php
 - genHelpers();
 #-----------------------------------------------------------
 Throttle
+#-----------------------------------------------------------
+Feeds: POST
+Finances: POST
+FBAInbound: GET
+FBAInventory: GET
+FBAOutbound: GET
+MerchantFulfillment: GET
+Order: GET
+Products: POST
+Recommendation: POST
+Reports: POST
+Seller: POST
+Subscriptions: POST
 #-----------------------------------------------------------
