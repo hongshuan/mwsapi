@@ -57,12 +57,22 @@ class Products extends MwsApi
         return $response->GetLowestOfferListingsForASINResult;
     }
 
-    public function getLowestOfferListingsForSKU()
+    public function getLowestOfferListingsForSKU($skus)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ItemCondition'] =
         // $params['ExcludeMe'] = (Type: bde.Boolean)
         // $params['SellerSKUList.SellerSKU.-'] = (Required)  (List)
+
+        if (!is_array($skus)) {
+            $skus = (array)$skus;
+        }
+
+        $N = 1;
+        foreach ($skus as $sku) {
+            $this->params["SellerSKUList.SellerSKU.$N"] = $sku;
+            $N++;
+        }
 
         $this->params['Action'] = 'GetLowestOfferListingsForSKU';
 

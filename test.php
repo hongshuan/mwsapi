@@ -117,7 +117,9 @@ function testProductApi($config)
     $productApi = $client->productApi();
 #   $response = $productApi->getServiceStatus();
 #   $response = $productApi->getCompetitivePricingForSKU('SYN-5702777');
-    $response = $productApi->getCompetitivePricingForSKU(['SYN-5702777', 'SYN-5692028']);
+#   $response = $productApi->getCompetitivePricingForSKU(['SYN-5702777', 'SYN-5692028']);
+#   $response = $productApi->getLowestOfferListingsForSKU('SYN-5702777');
+#   $response = $productApi->getLowestOfferListingsForSKU(['SYN-5702777', 'SYN-5692028']);
     print_r($response);
 }
 testProductApi($config);
