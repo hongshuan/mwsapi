@@ -51,6 +51,11 @@ class MwsApi
         $this->results = [];
     }
 
+    public function isNumericArray($var)
+    {
+        return count(array_filter(array_keys($var), 'is_string')) == 0;
+    }
+
     public function xml2array($xml)
     {
         $arr = array();
