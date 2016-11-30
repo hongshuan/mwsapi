@@ -20,9 +20,11 @@ class FulfillmentInbound extends MwsApi
         return $response->ConfirmPreorderResult;
     }
 
-    public function confirmTransportRequest()
+    public function confirmTransportRequest($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'ConfirmTransportRequest';
 
@@ -61,9 +63,11 @@ class FulfillmentInbound extends MwsApi
         return $response->CreateInboundShipmentPlanResult;
     }
 
-    public function estimateTransportRequest()
+    public function estimateTransportRequest($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'EstimateTransportRequest';
 
@@ -72,9 +76,11 @@ class FulfillmentInbound extends MwsApi
         return $response->EstimateTransportRequestResult;
     }
 
-    public function getBillOfLading()
+    public function getBillOfLading($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'GetBillOfLading';
 
@@ -133,9 +139,11 @@ class FulfillmentInbound extends MwsApi
         return $response->GetPalletLabelsResult;
     }
 
-    public function getPreorderInfo()
+    public function getPreorderInfo($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'GetPreorderInfo';
 
@@ -177,9 +185,11 @@ class FulfillmentInbound extends MwsApi
         return $response->GetServiceStatusResult;
     }
 
-    public function getTransportContent()
+    public function getTransportContent($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'GetTransportContent';
 
@@ -281,9 +291,11 @@ class FulfillmentInbound extends MwsApi
         return $response->UpdateInboundShipmentResult;
     }
 
-    public function voidTransportRequest()
+    public function voidTransportRequest($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'VoidTransportRequest';
 

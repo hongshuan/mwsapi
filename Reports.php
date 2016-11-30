@@ -23,9 +23,11 @@ class Reports extends MwsApi
         return $response->CancelReportRequestsResult;
     }
 
-    public function getReport()
+    public function getReport($reportId)
     {
         // $params['ReportId'] = (Required)
+
+        $this->params['ReportId'] = $reportId;
 
         $this->params['Action'] = 'GetReport';
 

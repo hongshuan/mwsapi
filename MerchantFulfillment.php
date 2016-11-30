@@ -8,9 +8,11 @@ class MerchantFulfillment extends MwsApi
     const VERSION = '2015-06-01';
     const PATH = '/MerchantFulfillment/2015-06-01';
 
-    public function cancelShipment()
+    public function cancelShipment($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'CancelShipment';
 
@@ -52,9 +54,11 @@ class MerchantFulfillment extends MwsApi
         return $response->GetServiceStatusResult;
     }
 
-    public function getShipment()
+    public function getShipment($shipmentId)
     {
         // $params['ShipmentId'] = (Required)
+
+        $this->params['ShipmentId'] = $shipmentId;
 
         $this->params['Action'] = 'GetShipment';
 
