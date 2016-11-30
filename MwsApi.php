@@ -50,4 +50,20 @@ class MwsApi
         $this->params = [];
         $this->results = [];
     }
+
+    public function xml2array($xml)
+    {
+        $arr = array();
+
+        foreach ($xml->children() as $r) {
+            if(count($r->children()) == 0) {
+                $arr[$r->getName()] = strval($r);
+            }
+            else {
+                $arr[$r->getName()][] = xml2array($r);
+            }
+        }
+
+        return $arr;
+    }
 }
