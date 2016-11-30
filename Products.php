@@ -8,10 +8,12 @@ class Products extends MwsApi
     const VERSION = '2011-10-01';
     const PATH = '/Products/2011-10-01';
 
-    public function getCompetitivePricingForASIN()
+    public function getCompetitivePricingForASIN($asins)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ASINList.ASIN.-'] = (Required)  (List)
+
+        $this->setAsinList($asins);
 
         $this->params['Action'] = 'GetCompetitivePricingForASIN';
 
@@ -25,30 +27,24 @@ class Products extends MwsApi
         // $params['MarketplaceId'] = (Required)
         // $params['SellerSKUList.SellerSKU.-'] = (Required)  (List)
 
-        if (!is_array($skus)) {
-            $skus = (array)$skus;
-        }
-
-        $N = 1;
-        foreach ($skus as $sku) {
-            $this->params["SellerSKUList.SellerSKU.$N"] = $sku;
-            $N++;
-        }
+        $this->setSkuList($skus);
 
         $this->params['Action'] = 'GetCompetitivePricingForSKU';
 
         $response = $this->invoke();
 
-#       return $response;
+#       return $response;  // TODO: return value
         return $response->GetCompetitivePricingForSKUResult;
     }
 
-    public function getLowestOfferListingsForASIN()
+    public function getLowestOfferListingsForASIN($asins)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ItemCondition'] =
         // $params['ExcludeMe'] = (Type: bde.Boolean)
         // $params['ASINList.ASIN.-'] = (Required)  (List)
+
+        $this->setAsinList($asins);
 
         $this->params['Action'] = 'GetLowestOfferListingsForASIN';
 
@@ -64,15 +60,7 @@ class Products extends MwsApi
         // $params['ExcludeMe'] = (Type: bde.Boolean)
         // $params['SellerSKUList.SellerSKU.-'] = (Required)  (List)
 
-        if (!is_array($skus)) {
-            $skus = (array)$skus;
-        }
-
-        $N = 1;
-        foreach ($skus as $sku) {
-            $this->params["SellerSKUList.SellerSKU.$N"] = $sku;
-            $N++;
-        }
+        $this->setSkuList($skus);
 
         $this->params['Action'] = 'GetLowestOfferListingsForSKU';
 
@@ -81,11 +69,13 @@ class Products extends MwsApi
         return $response->GetLowestOfferListingsForSKUResult;
     }
 
-    public function getLowestPricedOffersForASIN()
+    public function getLowestPricedOffersForASIN($asin)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ASIN'] = (Required)
         // $params['ItemCondition'] = (Required)
+
+        $this->params['ASIN'] = $asin;
 
         $this->params['Action'] = 'GetLowestPricedOffersForASIN';
 
@@ -94,11 +84,13 @@ class Products extends MwsApi
         return $response->GetLowestPricedOffersForASINResult;
     }
 
-    public function getLowestPricedOffersForSKU()
+    public function getLowestPricedOffersForSKU($sku)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['SellerSKU'] = (Required)
         // $params['ItemCondition'] = (Required)
+
+        $this->params['SellerSKU'] = $sku;
 
         $this->params['Action'] = 'GetLowestPricedOffersForSKU';
 
@@ -107,10 +99,12 @@ class Products extends MwsApi
         return $response->GetLowestPricedOffersForSKUResult;
     }
 
-    public function getMatchingProduct()
+    public function getMatchingProduct($asins)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ASINList.ASIN.-'] = (Required)  (List)
+
+        $this->setAsinList($asins);
 
         $this->params['Action'] = 'GetMatchingProduct';
 
@@ -143,11 +137,13 @@ class Products extends MwsApi
         return $response->GetMyFeesEstimateResult;
     }
 
-    public function getMyPriceForASIN()
+    public function getMyPriceForASIN($asins)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ItemCondition'] =
         // $params['ASINList.ASIN.-'] = (Required)  (List)
+
+        $this->setAsinList($asins);
 
         $this->params['Action'] = 'GetMyPriceForASIN';
 
@@ -156,11 +152,13 @@ class Products extends MwsApi
         return $response->GetMyPriceForASINResult;
     }
 
-    public function getMyPriceForSKU()
+    public function getMyPriceForSKU($skus)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ItemCondition'] =
         // $params['SellerSKUList.SellerSKU.-'] = (Required)  (List)
+
+        $this->setSkuList($skus);
 
         $this->params['Action'] = 'GetMyPriceForSKU';
 
@@ -169,10 +167,12 @@ class Products extends MwsApi
         return $response->GetMyPriceForSKUResult;
     }
 
-    public function getProductCategoriesForASIN()
+    public function getProductCategoriesForASIN($asin)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['ASIN'] = (Required)
+
+        $this->params['ASIN'] = $asin;
 
         $this->params['Action'] = 'GetProductCategoriesForASIN';
 
@@ -181,10 +181,12 @@ class Products extends MwsApi
         return $response->GetProductCategoriesForASINResult;
     }
 
-    public function getProductCategoriesForSKU()
+    public function getProductCategoriesForSKU($sku)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['SellerSKU'] = (Required)
+
+        $this->params['SellerSKU'] = $sku;
 
         $this->params['Action'] = 'GetProductCategoriesForSKU';
 
@@ -213,6 +215,32 @@ class Products extends MwsApi
         $response = $this->invoke();
 
         return $response->ListMatchingProductsResult;
+    }
+
+    protected function setSkuList($skus)
+    {
+        if (!is_array($skus)) {
+            $skus = (array)$skus;
+        }
+
+        $N = 1;
+        foreach ($skus as $sku) {
+            $this->params["SellerSKUList.SellerSKU.$N"] = $sku;
+            $N++;
+        }
+    }
+
+    protected function setAsinList($asins)
+    {
+        if (!is_array($asins)) {
+            $asins = (array)$asins;
+        }
+
+        $N = 1;
+        foreach ($asins as $asin) {
+            $this->params["ASINList.ASIN.$N"] = $asin;
+            $N++;
+        }
     }
 
     protected function invoke()
