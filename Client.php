@@ -93,6 +93,7 @@ class Client
         }
 
         sort($arr);
+#       uksort($arr, 'strcmp');
 
         $str = implode('&', $arr);
 

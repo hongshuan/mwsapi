@@ -115,11 +115,24 @@ function testProductApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $productApi = $client->productApi();
+
 #   $response = $productApi->getServiceStatus();
+
 #   $response = $productApi->getCompetitivePricingForSKU('SYN-5702777');
 #   $response = $productApi->getCompetitivePricingForSKU(['SYN-5702777', 'SYN-5692028']);
+
 #   $response = $productApi->getLowestOfferListingsForSKU('SYN-5702777');
 #   $response = $productApi->getLowestOfferListingsForSKU(['SYN-5702777', 'SYN-5692028']);
+
+#x  $response = $productApi->getLowestPricedOffersForSKU('SYN-5702777');
+
+#   $response = $productApi->getMyPriceForSKU('SYN-5702777');
+#   $response = $productApi->getMyPriceForSKU(['SYN-5702777', 'SYN-5692028']);
+
+#   $response = $productApi->getProductCategoriesForSKU('SYN-5702777');
+
+    $response = $productApi->getProductCategoriesForSKU('SYN-5702777');
+
     print_r($response);
 }
 testProductApi($config);
