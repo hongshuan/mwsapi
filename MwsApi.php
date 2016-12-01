@@ -45,18 +45,18 @@ class MwsApi
         return $this;
     }
 
-    public function reset()
+    protected function reset()
     {
         $this->params = [];
         $this->results = [];
     }
 
-    public function isNumericArray($var)
+    protected function isNumericArray($var)
     {
         return count(array_filter(array_keys($var), 'is_string')) == 0;
     }
 
-    public function xml2array($xml)
+    protected function xml2array($xml)
     {
         $arr = array();
 
