@@ -74,7 +74,7 @@ class Client
         $info = curl_getinfo($ch);
         curl_close($ch);
 
-        $this->log($response);
+        $this->log($this->formatXml($response));
 #       $this->log($info);
         $this->log(str_repeat('-', 80));
 
@@ -132,6 +132,16 @@ class Client
        #$text = date('Y-m-d h:i:s ') . $message . "\n";
         $text = trim($message) . "\n\n";
         error_log($text, 3, $filename);
+    }
+
+    public function formatXml($xml)
+    {
+        $dom = new \DOMDocument('1.0');
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $dom->loadXML($xml);
+        $xml = $dom->saveXML();
+        return $xml;
     }
 
     public function feedApi() { return new Feeds($this); }
