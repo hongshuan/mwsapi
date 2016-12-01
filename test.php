@@ -131,11 +131,11 @@ function testProductApi($config)
 
 #   $response = $productApi->getProductCategoriesForSKU('SYN-5702777');
 
-    $response = $productApi->getProductCategoriesForSKU('SYN-5702777');
+#   $response = $productApi->getProductCategoriesForSKU('SYN-5702777');
 
     print_r($response);
 }
-testProductApi($config);
+#testProductApi($config);
 
 function testRecommendationApi($config)
 {
@@ -177,7 +177,11 @@ function testSubscriptionApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $subscriptionApi = $client->subscriptionApi();
-    $response = $subscriptionApi->getServiceStatus();
+
+#   $response = $subscriptionApi->getServiceStatus();
+
+#x  $response = $subscriptionApi->listSubscriptions();
+
     print_r($response);
 }
 #testSubscriptionApi($config);
