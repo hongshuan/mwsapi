@@ -55,20 +55,4 @@ class MwsApi
     {
         return count(array_filter(array_keys($var), 'is_string')) == 0;
     }
-
-    protected function xml2array($xml)
-    {
-        $arr = array();
-
-        foreach ($xml->children() as $r) {
-            if (count($r->children()) == 0) {
-                $arr[$r->getName()] = strval($r);
-            }
-            else {
-                $arr[$r->getName()][] = $this->xml2array($r);
-            }
-        }
-
-        return $arr;
-    }
 }
