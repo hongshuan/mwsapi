@@ -77,10 +77,12 @@ class Client
         }
 
         $response = curl_exec($ch);
+
         $info = curl_getinfo($ch);
         curl_close($ch);
 
-        $this->log($this->formatXml($response));
+        $this->log($response);
+#       $this->log($this->formatXml($response));
 #       $this->log($info);
         $this->log(str_repeat('-', 80));
 
@@ -90,16 +92,16 @@ class Client
 
     protected function makeQueryString($params)
     {
-        $arr = [];
+        uksort($params, 'strcmp');
 
+        $arr = [];
         foreach ($params as $key => $val) {
             $key = str_replace("%7E", "~", rawurlencode($key));
             $val = str_replace("%7E", "~", rawurlencode($val));
             $arr[] = "{$key}={$val}";
         }
 
-        sort($arr);
-#       uksort($arr, 'strcmp');
+#       sort($arr);
 
         $str = implode('&', $arr);
 
@@ -117,7 +119,11 @@ class Client
         $sign .= $queryString;
 
         $signature = hash_hmac("sha256", $sign, $secretKey, true);
-        $signature = urlencode(base64_encode($signature));
+        $signature = base64_encode($signature);
+
+#       if ($this->method == 'GET') {
+            $signature = urlencode($signature);
+#       }
 
         return $signature;
     }
