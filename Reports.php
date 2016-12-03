@@ -197,7 +197,7 @@ class Reports extends MwsApi
         return $response->UpdateReportAcknowledgementsResult;
     }
 
-    protected function invoke($method = 'POST')
+    protected function invoke($method = 'GET')
     {
         $path = self::PATH;
 

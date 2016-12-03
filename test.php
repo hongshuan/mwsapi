@@ -150,25 +150,22 @@ function testReportApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $reportApi = $client->reportApi();
-    $response = $reportApi->getServiceStatus();
-    print_r($response);
-}
-#testReportApi($config);
 
-function testReportScheduleApi($config)
-{
-    $client = new Amazon\Mws\Client($config);
-    $reportScheduleApi = $client->reportScheduleApi();
-    $response = $reportScheduleApi->getServiceStatus();
+#   $response = $reportApi->getServiceStatus(); // no such method
+#   $response = $reportApi->getReport('3551414495017138');
+
     print_r($response);
 }
-#testReportScheduleApi($config);
+ testReportApi($config);
 
 function testSellerApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $sellerApi = $client->sellerApi();
-    $response = $sellerApi->getServiceStatus();
+
+#   $response = $sellerApi->getServiceStatus();
+#   $response = $sellerApi->listMarketplaceParticipations();
+
     print_r($response);
 }
 #testSellerApi($config);
@@ -179,18 +176,9 @@ function testSubscriptionApi($config)
     $subscriptionApi = $client->subscriptionApi();
 
 #   $response = $subscriptionApi->getServiceStatus();
-
-#x  $response = $subscriptionApi->listSubscriptions();
+#   $response = $subscriptionApi->listSubscriptions();
+#   $response = $subscriptionApi->listRegisteredDestinations();
 
     print_r($response);
 }
 #testSubscriptionApi($config);
-
-function testSubscriptionDestinationApi($config)
-{
-    $client = new Amazon\Mws\Client($config);
-    $subscriptionDestinationApi = $client->subscriptionDestinationApi();
-    $response = $subscriptionDestinationApi->getServiceStatus();
-    print_r($response);
-}
-#testSubscriptionDestinationApi($config);

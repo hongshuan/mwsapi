@@ -39,7 +39,7 @@ class Sellers extends MwsApi
         return $response->ListMarketplaceParticipationsByNextTokenResult;
     }
 
-    protected function invoke($method = 'POST')
+    protected function invoke($method = 'GET')
     {
         $path = self::PATH;
 

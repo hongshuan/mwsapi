@@ -41,8 +41,10 @@ class MwsApi
         if (substr($name, 0, 3) == 'set') {
             $name = substr($name, 3);
             $this->params[$name] = current($value);
+            return $this;
         }
-        return $this;
+
+        throw new \Exception("Call to undefined method ".get_called_class()."::$name()");
     }
 
     protected function toArray($result)
