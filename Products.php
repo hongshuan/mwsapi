@@ -95,13 +95,14 @@ class Products extends MwsApi
         return $response->GetLowestPricedOffersForASINResult;
     }
 
-    public function getLowestPricedOffersForSKU($sku)
+    public function getLowestPricedOffersForSKU($sku, $itemCondition='New')
     {
         // $params['MarketplaceId'] = (Required)
         // $params['SellerSKU'] = (Required)
         // $params['ItemCondition'] = (Required)
 
         $this->params['SellerSKU'] = $sku;
+        $this->params['ItemCondition'] = $itemCondition;
 
         $this->params['Action'] = 'GetLowestPricedOffersForSKU';
 
