@@ -5,8 +5,11 @@ namespace Amazon\Mws;
 class Client
 {
     protected $config;
-#   protected $logger;
+    protected $logger;
     protected $method; // GET|POST
+    protected $path;
+    protected $params;
+    protected $options;
 
     public function __construct($config)
     {
@@ -22,9 +25,18 @@ class Client
         }
     }
 
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
     public function send($method, $path, $params, $options = [])
     {
-        $this->method = $method;
+        $this->method  = $method;
+        $this->path    = $path;
+        $this->params  = $params;
+        $this->options = $options;
+
         return $this->sendRequest($path, $params, $options);
     }
 
