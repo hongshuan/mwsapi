@@ -45,6 +45,17 @@ class MwsApi
         return $this;
     }
 
+    protected function toArray($result)
+    {
+        $arr = [];
+
+        foreach ($result as $r) {
+            $arr[] = $r;
+        }
+
+        return $arr;
+    }
+
     protected function reset()
     {
         $this->params = [];

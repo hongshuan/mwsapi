@@ -19,10 +19,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
-        return $response;
-
-        // TODO: this is not corrrect for multi-skus
-#       return $response->GetCompetitivePricingForASINResult;
+        $this->toArray($response->GetCompetitivePricingForASINResult);
     }
 
     public function getCompetitivePricingForSKU($skus)
@@ -36,10 +33,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
-        return $response;
-
-        // TODO: this is not corrrect for multi-skus
-#       return $response->GetCompetitivePricingForSKUResult;
+        return $this->toArray($response->GetCompetitivePricingForSKUResult);
     }
 
     public function getLowestOfferListingsForASIN($asins)
@@ -55,10 +49,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
-        return $response;
-
-        // TODO: this is not corrrect for multi-skus
-#       return $response->GetLowestOfferListingsForASINResult;
+        return $this->toArray($response->GetLowestOfferListingsForASINResult);
     }
 
     public function getLowestOfferListingsForSKU($skus)
@@ -74,10 +65,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
-        return $response;
-
-        // TODO: this is not corrrect for multi-skus
-#       return $response->GetLowestOfferListingsForSKUResult;
+        return $this->toArray($response->GetLowestOfferListingsForSKUResult);
     }
 
     public function getLowestPricedOffersForASIN($asin)
@@ -122,10 +110,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
-        return $response;
-
-        // TODO: this is not corrrect for multi-skus
-#       return $response->GetMatchingProductResult;
+        return $this->toArray($response->GetMatchingProductResult);
     }
 
     public function getMatchingProductForId()
@@ -164,10 +149,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
-        return $response;
-
-        // TODO: this is not corrrect for multi-skus
-#       return $response->GetMyPriceForASINResult;
+        return $this->toArray($response->GetMyPriceForASINResult);
     }
 
     public function getMyPriceForSKU($skus)
@@ -182,10 +164,7 @@ class Products extends MwsApi
 
         $response = $this->invoke();
 
-        return $response;
-
-        // TODO: this is not corrrect for multi-skus
-#       return $response->GetMyPriceForSKUResult;
+        return $this->toArray($response->GetMyPriceForSKUResult);
     }
 
     public function getProductCategoriesForASIN($asin)
