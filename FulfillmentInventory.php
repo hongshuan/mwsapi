@@ -44,13 +44,13 @@ class FulfillmentInventory extends MwsApi
         return $response->ListInventorySupplyByNextTokenResult;
     }
 
-    protected function invoke()
+    protected function invoke($method = 'GET')
     {
         $path = self::PATH;
 
         $this->params['Version'] = self::VERSION;
 
-        $response = $this->client->httpGet($path, $this->params);
+        $response = $this->client->send($method, $path, $this->params);
 
         $this->params = []; // reset for next api call
 

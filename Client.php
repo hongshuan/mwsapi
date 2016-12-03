@@ -22,15 +22,9 @@ class Client
         }
     }
 
-    public function httpGet($path, $params, $options = [])
+    public function send($method, $path, $params, $options = [])
     {
-        $this->method = 'GET';
-        return $this->sendRequest($path, $params, $options);
-    }
-
-    public function httpPost($path, $params, $options = [])
-    {
-        $this->method = 'POST';
+        $this->method = $method;
         return $this->sendRequest($path, $params, $options);
     }
 

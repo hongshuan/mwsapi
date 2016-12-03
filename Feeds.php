@@ -91,13 +91,13 @@ class Feeds extends MwsApi
         return $response->SubmitFeedResult;
     }
 
-    protected function invoke()
+    protected function invoke($method='POST')
     {
         $path = self::PATH;
 
         $this->params['Version'] = self::VERSION;
 
-        $response = $this->client->httpPost($path, $this->params);
+        $response = $this->client->send($method, $path, $this->params);
 
         $this->params = []; // reset for next api call
 
