@@ -29,7 +29,11 @@ function testFeedApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $feedApi = $client->feedApi();
-    $response = $feedApi->getServiceStatus();
+
+#   $response = $feedApi->getServiceStatus();  // no such method
+#   $response = $feedApi->getFeedSubmissionCount();
+#   $response = $feedApi->getFeedSubmissionList();
+
     print_r($response);
 }
 #testFeedApi($config);
@@ -38,7 +42,10 @@ function testFinanceApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $financeApi = $client->financeApi();
-    $response = $financeApi->getServiceStatus();
+
+#   $response = $financeApi->getServiceStatus();
+#   $response = $financeApi->listFinancialEventGroups();  // argument required
+
     print_r($response);
 }
 #testFinanceApi($config);
@@ -149,14 +156,22 @@ function testRecommendationApi($config)
 function testReportApi($config)
 {
     $client = new Amazon\Mws\Client($config);
+#   $reportApi = new Amazon\Mws\Reports($client);
     $reportApi = $client->reportApi();
 
 #   $response = $reportApi->getServiceStatus(); // no such method
 #   $response = $reportApi->getReport('3551414495017138');
+#   $response = $reportApi->getReport('3552210689017138');  // CSV RETURNED, NOT XML,
+#   $response = $reportApi->getReportCount();
+#   $response = $reportApi->getReportList(); // hasNext = true
+#   $response = $reportApi->getReportRequestCount();
+#   $response = $reportApi->getReportList(); // hasNext = true
+#   $response = $reportApi->getReportScheduleCount();
+#   $response = $reportApi->getReportScheduleList(); // hasNext = false
 
     print_r($response);
 }
- testReportApi($config);
+#testReportApi($config);
 
 function testSellerApi($config)
 {

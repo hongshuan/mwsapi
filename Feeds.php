@@ -91,7 +91,7 @@ class Feeds extends MwsApi
         return $response->SubmitFeedResult;
     }
 
-    protected function invoke($method='POST')
+    protected function invoke($method='GET')
     {
         $path = self::PATH;
 

@@ -71,7 +71,7 @@ class Finances extends MwsApi
         return $response->ListFinancialEventsByNextTokenResult;
     }
 
-    protected function invoke($method = 'POST')
+    protected function invoke($method = 'GET')
     {
         $path = self::PATH;
 
