@@ -57,9 +57,6 @@ class Client
         $url = "https://$serviceUrl$path";
         $data = $queryString . "&Signature=" . $signature;
 
-        $this->log($this->method.' '.$url);
-        $this->log($data);
-
         if ($this->method == 'GET') {
             $url = "$url?$data";
         }
@@ -73,21 +70,30 @@ class Client
 
         if ($this->method == 'POST') {
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+#           curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
 
         $response = curl_exec($ch);
-
         $info = curl_getinfo($ch);
         curl_close($ch);
 
+        $this->log($this->method.' '.$url);
+        $this->log($data);
         $this->log($response);
 #       $this->log($this->formatXml($response));
-#       $this->log($info);
+        $this->log($info);
         $this->log(str_repeat('-', 80));
 
-        $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
-        return simplexml_load_string($response);
+        if ($info['content_type'] == 'text/xml') {
+            $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
+            return simplexml_load_string($response);
+        }
+
+        if ($info['http_code'] == 400) {
+            throw new \Exception($response);
+        }
+
+        return $response;
     }
 
     protected function makeQueryString($params)
