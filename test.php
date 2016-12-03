@@ -148,7 +148,11 @@ function testRecommendationApi($config)
 {
     $client = new Amazon\Mws\Client($config);
     $recommendationApi = $client->recommendationApi();
-    $response = $recommendationApi->getServiceStatus();
+
+#   $response = $recommendationApi->getServiceStatus();
+#   $response = $recommendationApi->listRecommendations();
+#   $response = $recommendationApi->getLastUpdatedTimeForRecommendations();
+
     print_r($response);
 }
 #testRecommendationApi($config);

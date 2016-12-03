@@ -54,7 +54,7 @@ class Recommendations extends MwsApi
         return $response->ListRecommendationsByNextTokenResult;
     }
 
-    protected function invoke($method = 'POST')
+    protected function invoke($method = 'GET')
     {
         $path = self::PATH;
 
