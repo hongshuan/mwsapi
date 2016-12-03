@@ -94,7 +94,7 @@ class Products extends MwsApi
 
         $this->params['Action'] = 'GetLowestPricedOffersForSKU';
 
-        $response = $this->invoke();
+        $response = $this->invoke('POST');
 
         return $response->GetLowestPricedOffersForSKUResult;
     }
