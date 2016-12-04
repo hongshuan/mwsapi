@@ -201,7 +201,8 @@ function testSubscriptionApi($config)
 #   $response = $subscriptionApi->listRegisteredDestinations();
 #   $response = $subscriptionApi->registerDestination($sqsurl);
 #   $response = $subscriptionApi->sendTestNotificationToDestination($sqsurl);
-    $response = $subscriptionApi->createSubscription($sqsurl);
+#   $response = $subscriptionApi->createSubscription($sqsurl);
+#   $response = $subscriptionApi->getSubscription($sqsurl);
 
     print_r($response);
 }
