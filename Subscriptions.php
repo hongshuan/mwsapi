@@ -40,10 +40,14 @@ class Subscriptions extends MwsApi
         return $response->ListRegisteredDestinationsResult;
     }
 
-    public function registerDestination()
+    public function registerDestination($sqsurl)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['Destination'] = (Required) (Type: Complex)
+
+        $this->params['Destination.AttributeList.member.1.Key'] = 'sqsQueueUrl';
+        $this->params['Destination.AttributeList.member.1.Value'] = $sqsurl;
+        $this->params['Destination.DeliveryChannel'] = 'SQS';
 
         $this->params['Action'] = 'RegisterDestination';
 
@@ -52,10 +56,14 @@ class Subscriptions extends MwsApi
         return $response->RegisterDestinationResult;
     }
 
-    public function sendTestNotificationToDestination()
+    public function sendTestNotificationToDestination($sqsurl)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['Destination'] = (Required) (Type: Complex)
+
+        $this->params['Destination.AttributeList.member.1.Key'] = 'sqsQueueUrl';
+        $this->params['Destination.AttributeList.member.1.Value'] = $sqsurl;
+        $this->params['Destination.DeliveryChannel'] = 'SQS';
 
         $this->params['Action'] = 'SendTestNotificationToDestination';
 
@@ -64,10 +72,16 @@ class Subscriptions extends MwsApi
         return $response->SendTestNotificationToDestinationResult;
     }
 
-    public function createSubscription()
+    public function createSubscription($sqsurl, $type = 'AnyOfferChanged')
     {
         // $params['MarketplaceId'] = (Required)
         // $params['Subscription'] = (Required) (Type: Complex)
+
+        $this->params['Subscription.Destination.AttributeList.member.1.Key'] = 'sqsQueueUrl';
+        $this->params['Subscription.Destination.AttributeList.member.1.Value'] = $sqsurl;
+        $this->params['Subscription.Destination.DeliveryChannel'] = 'SQS';
+        $this->params['Subscription.IsEnabled'] = true;
+        $this->params['Subscription.NotificationType'] = $type;
 
         $this->params['Action'] = 'CreateSubscription';
 

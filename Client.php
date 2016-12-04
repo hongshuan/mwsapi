@@ -81,7 +81,7 @@ class Client
         $this->log($data);
         $this->log($response);
 #       $this->log($this->formatXml($response));
-        $this->log($info);
+#       $this->log($info);
         $this->log(str_repeat('-', 80));
 
         if ($info['content_type'] == 'text/xml') {

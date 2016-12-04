@@ -194,9 +194,14 @@ function testSubscriptionApi($config)
     $client = new Amazon\Mws\Client($config);
     $subscriptionApi = $client->subscriptionApi();
 
+    $sqsurl = 'https://sqs.us-west-2.amazonaws.com/805174385770/sqs-bte-mws-notification';
+
 #   $response = $subscriptionApi->getServiceStatus();
 #   $response = $subscriptionApi->listSubscriptions();
 #   $response = $subscriptionApi->listRegisteredDestinations();
+#   $response = $subscriptionApi->registerDestination($sqsurl);
+#?  $response = $subscriptionApi->createSubscription($sqsurl);
+    $response = $subscriptionApi->sendTestNotificationToDestination($sqsurl);
 
     print_r($response);
 }
