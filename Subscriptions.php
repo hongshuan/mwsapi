@@ -8,10 +8,14 @@ class Subscriptions extends MwsApi
     const VERSION = '2013-07-01';
     const PATH = '/Subscriptions/2013-07-01';
 
-    public function deregisterDestination()
+    public function deregisterDestination($sqsurl)
     {
         // $params['MarketplaceId'] = (Required)
         // $params['Destination'] = (Required) (Type: Complex)
+
+        $this->params['Destination.AttributeList.member.1.Key'] = 'sqsQueueUrl';
+        $this->params['Destination.AttributeList.member.1.Value'] = $sqsurl;
+        $this->params['Destination.DeliveryChannel'] = 'SQS';
 
         $this->params['Action'] = 'DeregisterDestination';
 
@@ -90,11 +94,16 @@ class Subscriptions extends MwsApi
         return $response->CreateSubscriptionResult;
     }
 
-    public function deleteSubscription()
+    public function deleteSubscription($sqsurl, $type = 'AnyOfferChanged')
     {
         // $params['MarketplaceId'] = (Required)
         // $params['NotificationType'] = (Required) (Type: subscriptions.NotificationTypes)
         // $params['Destination'] = (Required) (Type: Complex)
+
+        $this->params['Destination.AttributeList.member.1.Key'] = 'sqsQueueUrl';
+        $this->params['Destination.AttributeList.member.1.Value'] = $sqsurl;
+        $this->params['Destination.DeliveryChannel'] = 'SQS';
+        $this->params['NotificationType'] = $type;
 
         $this->params['Action'] = 'DeleteSubscription';
 
@@ -103,11 +112,16 @@ class Subscriptions extends MwsApi
         return $response->DeleteSubscriptionResult;
     }
 
-    public function getSubscription()
+    public function getSubscription($sqsurl, $type = 'AnyOfferChanged')
     {
         // $params['MarketplaceId'] = (Required)
         // $params['NotificationType'] = (Required) (Type: subscriptions.NotificationTypes)
         // $params['Destination'] = (Required) (Type: Complex)
+
+        $this->params['Destination.AttributeList.member.1.Key'] = 'sqsQueueUrl';
+        $this->params['Destination.AttributeList.member.1.Value'] = $sqsurl;
+        $this->params['Destination.DeliveryChannel'] = 'SQS';
+        $this->params['NotificationType'] = $type;
 
         $this->params['Action'] = 'GetSubscription';
 
@@ -127,10 +141,16 @@ class Subscriptions extends MwsApi
         return $response->ListSubscriptionsResult;
     }
 
-    public function updateSubscription()
+    public function updateSubscription($sqsurl, $enabled, $type = 'AnyOfferChanged')
     {
         // $params['MarketplaceId'] = (Required)
         // $params['Subscription'] = (Required) (Type: Complex)
+
+        $this->params['Subscription.Destination.AttributeList.member.1.Key'] = 'sqsQueueUrl';
+        $this->params['Subscription.Destination.AttributeList.member.1.Value'] = $sqsurl;
+        $this->params['Subscription.Destination.DeliveryChannel'] = 'SQS';
+        $this->params['Subscription.IsEnabled'] = $enabled;
+        $this->params['Subscription.NotificationType'] = $type;
 
         $this->params['Action'] = 'UpdateSubscription';
 
