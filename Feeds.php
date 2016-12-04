@@ -78,15 +78,20 @@ class Feeds extends MwsApi
         return $response->GetFeedSubmissionResultResult;
     }
 
-    public function submitFeed()
+    public function submitFeed($type, $content)
     {
         // $params['FeedType'] = (Required)
         // $params['MarketplaceIdList.Id.-'] =  (List)
         // $params['PurgeAndReplace'] = (Type: Checkbox)
 
+        // $content = file_get_contents($file);
+
+        $this->$params['FeedType'] = $type;
+        $this->$params['ContentMD5Value'] = base64_encode(md5($content, true));
+
         $this->params['Action'] = 'SubmitFeed';
 
-        $response = $this->invoke();
+        $response = $this->invoke('POST');
 
         return $response->SubmitFeedResult;
     }
