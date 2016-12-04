@@ -57,20 +57,21 @@ class Client
         $url = "https://$serviceUrl$path";
         $data = $queryString . "&Signature=" . $signature;
 
-        if ($this->method == 'GET') {
-            $url = "$url?$data";
-        }
-
-        $ch = curl_init($url);
+        $ch = curl_init();
 
 #       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/xml'));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: x-www-form-urlencoded'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
+        if ($this->method == 'GET') {
+            $url = "$url?$data";
+            curl_setopt($ch, CURLOPT_URL, $url);
+        }
+
         if ($this->method == 'POST') {
             curl_setopt($ch, CURLOPT_POST, true);
-#           curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
 
         $response = curl_exec($ch);
