@@ -91,7 +91,7 @@ class Client
             $xml = simplexml_load_string($response);
 
             if ($xml->getName() == 'ErrorResponse') {
-                throw new \Exception($response->Error->Message);
+                throw new \Exception($xml->Error->Message);
             }
 
             return $xml;

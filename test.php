@@ -141,6 +141,7 @@ function testProductApi($config)
 
 #   $response = $productApi->getProductCategoriesForSKU('SYN-5702777');
 
+#   $response = $productApi->getProductCategoriesForSKU('SYN-5702-777'); // Invalid SKU
 #   $response = $productApi->getProductCategoriesForSKU('SYN-5702777');
 
     print_r($response);
