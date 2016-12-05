@@ -87,7 +87,14 @@ class Client
 
         if ($info['content_type'] == 'text/xml') {
             $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
-            return simplexml_load_string($response);
+
+            $xml = simplexml_load_string($response);
+
+            if ($xml->getName() == 'ErrorResponse') {
+                throw new \Exception($response->Error->Message);
+            }
+
+            return $xml;
         }
 
         if ($info['http_code'] == 400) {

@@ -64,10 +64,6 @@ class Recommendations extends MwsApi
 
         $this->params = []; // reset for next api call
 
-        if ($response->getName() == 'ErrorResponse') {
-            throw new \Exception($response->Error->Message);
-        }
-
         // TODO: parse response
         return $response;
     }
