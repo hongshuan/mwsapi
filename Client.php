@@ -10,6 +10,7 @@ class Client
     protected $path;
     protected $params;
     protected $options;
+    protected $postData;
 
     public function __construct($config)
     {
@@ -28,6 +29,11 @@ class Client
     public function setLogger($logger)
     {
         $this->logger = $logger;
+    }
+
+    public function setPostData($data)
+    {
+        $this->postData = $data;
     }
 
     public function send($method, $path, $params, $options = [])
