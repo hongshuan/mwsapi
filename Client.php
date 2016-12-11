@@ -76,6 +76,7 @@ class Client
         }
 
         if ($this->method == 'POST') {
+            curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
