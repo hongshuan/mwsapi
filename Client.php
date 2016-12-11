@@ -66,7 +66,7 @@ class Client
         $ch = curl_init();
 
 #       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/xml'));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: x-www-form-urlencoded'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 #       curl_setopt($ch, CURLOPT_VERBOSE, true);
@@ -94,7 +94,8 @@ class Client
 #       $this->log($info);
         $this->log(str_repeat('-', 80));
 
-        if ($info['content_type'] == 'text/xml') {
+        /* GetLowestPricedOffersForSKU returns application/xml, other apis return text/xml */
+        if (in_array($info['content_type'], [ 'text/xml', 'application/xml' ])) {
             $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
 
             $xml = simplexml_load_string($response);

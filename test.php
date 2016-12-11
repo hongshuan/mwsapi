@@ -134,7 +134,7 @@ function testProductApi($config)
 #   $response = $productApi->getLowestOfferListingsForSKU('SYN-5702777');
 #   $response = $productApi->getLowestOfferListingsForSKU(['SYN-5702777', 'SYN-5692028']);
 
-#x  $response = $productApi->getLowestPricedOffersForSKU('SYN-5702777');
+#   $response = $productApi->getLowestPricedOffersForSKU('SYN-5702777'); // x
 
 #   $response = $productApi->getMyPriceForSKU('SYN-5702777');
 #   $response = $productApi->getMyPriceForSKU(['SYN-5702777', 'SYN-5692028']);
