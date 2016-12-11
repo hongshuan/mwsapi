@@ -69,6 +69,8 @@ class Client
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: x-www-form-urlencoded'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+#       curl_setopt($ch, CURLOPT_VERBOSE, true);
+#       curl_setopt($ch, CURLOPT_HEADER, true);
 
         if ($this->method == 'GET') {
             $url = "$url?$data";
