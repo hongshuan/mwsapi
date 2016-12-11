@@ -85,6 +85,20 @@ class Client
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
 
+        if ($this->method == 'UPLOAD') {
+            $url = "$url?$data";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_INFILE, $streamHandle);
+            curl_setopt($ch, CURLOPT_UPLOAD, true);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+            // TODO:
+        }
+
+        if ($this->method == 'DOWNLOAD') {
+            // TODO:
+        }
+
         $response = curl_exec($ch);
         $info = curl_getinfo($ch);
         $error = curl_error($ch);
