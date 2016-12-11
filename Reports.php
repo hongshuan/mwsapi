@@ -31,7 +31,7 @@ class Reports extends MwsApi
 
         $this->params['Action'] = 'GetReport';
 
-        $response = $this->invoke();
+        $response = $this->invoke(); // TODO: DOWNLOAD
 
         return $response->GetReportResult;
     }

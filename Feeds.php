@@ -87,15 +87,15 @@ class Feeds extends MwsApi
         // $content = file_get_contents($file);
 
         $this->$params['FeedType'] = $type;
-        $this->$params['ContentMD5Value'] = base64_encode(md5($content, true));
+        $this->$params['ContentMD5Value'] = base64_encode(md5($content, true)); // ??
 
-        $this->client->setPostData($content);
+        $this->client->setPostData($content); // TODO: setUploadData/setUploadFile
 
         $this->params['Action'] = 'SubmitFeed';
 
-        $response = $this->invoke('POST');
+        $response = $this->invoke('POST'); // TODO: UPLOAD
 
-        $this->client->setPostData(null); // clear for next call
+        $this->client->setPostData(null); // clear for next call, TODO: setUploadData/setUploadFile(null)
 
         return $response->SubmitFeedResult;
     }
