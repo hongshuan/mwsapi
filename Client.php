@@ -69,6 +69,8 @@ class Client
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+#       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+#       curl_setopt($ch, CURLOPT_USERAGENT, $this->userAgent);
 #       curl_setopt($ch, CURLOPT_VERBOSE, true);
 #       curl_setopt($ch, CURLOPT_HEADER, true);
 
@@ -85,6 +87,7 @@ class Client
 
         $response = curl_exec($ch);
         $info = curl_getinfo($ch);
+        $error = curl_error($ch);
         curl_close($ch);
 
         $this->log($this->method.' '.$url);
@@ -93,6 +96,10 @@ class Client
 #       $this->log($this->formatXml($response));
 #       $this->log($info);
         $this->log(str_repeat('-', 80));
+
+        if ($response === false) {
+            throw new \Exception($error);
+        }
 
         /* GetLowestPricedOffersForSKU returns application/xml, other apis return text/xml */
         if (strpos($info['content_type'], 'xml') !== false) {
