@@ -95,7 +95,7 @@ class Client
         $this->log(str_repeat('-', 80));
 
         /* GetLowestPricedOffersForSKU returns application/xml, other apis return text/xml */
-        if (in_array($info['content_type'], [ 'text/xml', 'application/xml' ])) {
+        if (strpos($info['content_type'], 'xml') !== false) {
             $response = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $response);
 
             $xml = simplexml_load_string($response);
