@@ -4,6 +4,8 @@ namespace Amazon\Mws;
 
 class Client
 {
+    const USER_AGENT = 'SimpleMWS/1.0';
+
     protected $config;
     protected $logger;
     protected $method; // GET|POST
